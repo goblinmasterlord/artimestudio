@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Mail, Send, User, MapPin, Clock, Phone } from 'lucide-react';
 import Container from '../ui/Container';
 import Button from '../ui/Button';
+import { Alert, AlertDescription, AlertTitle } from '../ui/alert';
 
 const InputWrapper = ({ children, label, required = true }) => (
   <div className="relative w-full group space-y-2">
@@ -48,10 +49,47 @@ const ContactSection = () => {
     message: ''
   });
   const [focusedField, setFocusedField] = useState(null);
+  const [status, setStatus] = useState({ type: null, message: null });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formState);
+    setIsSubmitting(true);
+    setStatus({ type: null, message: null });
+
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formState),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message');
+      }
+
+      setStatus({
+        type: 'success',
+        message: 'Thank you for your message! We will get back to you soon.',
+      });
+      setFormState({
+        name: '',
+        email: '',
+        phone: '',
+        message: ''
+      });
+    } catch (error) {
+      setStatus({
+        type: 'error',
+        message: 'Sorry, something went wrong. Please try again later.',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -75,6 +113,22 @@ const ContactSection = () => {
             className="lg:sticky lg:top-8"
           >
             <div className="max-w-md">
+              {status.type && (
+                <motion.div 
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mb-8"
+                >
+                  <Alert variant={status.type === 'success' ? 'default' : 'destructive'}>
+                    <AlertTitle>
+                      {status.type === 'success' ? 'Success!' : 'Error'}
+                    </AlertTitle>
+                    <AlertDescription>
+                      {status.message}
+                    </AlertDescription>
+                  </Alert>
+                </motion.div>
+              )}
 
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -82,32 +136,33 @@ const ContactSection = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                <h2 className="font-display text-5xl mb-6">Alkossunk együtt valami különlegeset</h2>
+                <h2 className="font-display text-5xl mb-6">Let's create something special together</h2>
                 <p className="text-lg opacity-70 mb-16 leading-relaxed">
-                  Akár egyedi festményt szeretnél, akár lakberendezési tanácsadásra van szükséged, 
-                  örömmel segítek megvalósítani az elképzeléseidet.
+                  Whether you're looking for a custom painting or need interior design advice,
+                  I'm here to help bring your vision to life.
                 </p>
               </motion.div>
               
               <div className="space-y-12">
-                <ContactInfo icon={MapPin} title="Műterem">
-                  Mézes Mázos utca 12.<br />Budapest
+                <ContactInfo icon={MapPin} title="Studio">
+                  123 Art Studio Lane<br />
+                  New York, NY 10001
                 </ContactInfo>
                 
-                <ContactInfo icon={Phone} title="Elérhetőség">
+                <ContactInfo icon={Phone} title="Contact">
                   <div className="space-y-1">
                     <a href="mailto:studio@example.com" className="block hover:opacity-100 transition-opacity">
                       studio@example.com
                     </a>
-                    <a href="tel:+36301234567" className="block hover:opacity-100 transition-opacity">
-                      +36 30 123 4567
+                    <a href="tel:+12345678901" className="block hover:opacity-100 transition-opacity">
+                      +1 (234) 567-8901
                     </a>
                   </div>
                 </ContactInfo>
                 
-                <ContactInfo icon={Clock} title="Nyitvatartás">
-                  Hétfő – Péntek: 9:00 – 18:00<br />
-                  Hétvégén előzetes egyeztetés alapján
+                <ContactInfo icon={Clock} title="Hours">
+                  Monday – Friday: 9:00 – 18:00<br />
+                  Weekends by appointment
                 </ContactInfo>
               </div>
             </div>
@@ -122,7 +177,7 @@ const ContactSection = () => {
           >
             <form onSubmit={handleSubmit} className="space-y-8">
               <div className="grid md:grid-cols-2 gap-8">
-                <InputWrapper label="Név">
+                <InputWrapper label="Name">
                   <div className="relative">
                     <input
                       type="text"
@@ -144,7 +199,7 @@ const ContactSection = () => {
                   </div>
                 </InputWrapper>
 
-                <InputWrapper label="E-mail">
+                <InputWrapper label="Email">
                   <div className="relative">
                     <input
                       type="email"
@@ -167,7 +222,7 @@ const ContactSection = () => {
                 </InputWrapper>
               </div>
 
-              <InputWrapper label="Telefonszám" required={false}>
+              <InputWrapper label="Phone Number" required={false}>
                 <div className="relative">
                   <input
                     type="tel"
@@ -188,7 +243,7 @@ const ContactSection = () => {
                 </div>
               </InputWrapper>
 
-              <InputWrapper label="Üzenet">
+              <InputWrapper label="Message">
                 <div className="relative">
                   <textarea
                     name="message"
@@ -215,13 +270,16 @@ const ContactSection = () => {
                   variant="primary" 
                   size="large"
                   className="group relative overflow-hidden"
+                  disabled={isSubmitting}
                 >
                   <motion.span
                     className="relative z-10 flex items-center gap-2"
                     whileHover={{ x: -4 }}
                   >
-                    Üzenet küldése
-                    <Send className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
+                    <Send className={`w-4 h-4 transition-transform ${
+                      isSubmitting ? 'animate-pulse' : 'group-hover:translate-x-1'
+                    }`} />
                   </motion.span>
                   <motion.div
                     className="absolute inset-0 bg-black"
