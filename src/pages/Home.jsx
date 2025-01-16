@@ -42,7 +42,7 @@ const SplitSection = ({ path, image, title, position }) => {
 
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
         <div className="flex items-center gap-2">
-          <span className="text-sm uppercase tracking-wider">Explore</span>
+          <span className="text-sm uppercase tracking-wider">Felfedezés</span>
           <ArrowRight className="w-4 h-4" />
         </div>
       </div>
@@ -56,13 +56,13 @@ const Home = () => {
       <SplitSection
         path="/canvas-art"
         image="/images/hero/canvas-split.jpg"
-        title="Canvas Art"
+        title="Festmények"
         position="left"
       />
       <SplitSection
         path="/interior-design"
         image="/images/hero/interior-split.jpg"
-        title="Interior Design"
+        title="Lakberendezés"
         position="right"
       />
     </div>

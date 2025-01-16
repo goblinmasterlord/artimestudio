@@ -1,4 +1,3 @@
-// src/components/portfolio/ProjectCard.jsx
 import { memo, useState } from 'react';
 import { motion } from 'framer-motion';
 

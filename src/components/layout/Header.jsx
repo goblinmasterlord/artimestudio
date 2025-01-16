@@ -34,8 +34,8 @@ const Header = () => {
   const headerVisibilityStyle = visible ? "translate-y-0" : "-translate-y-full";
 
   const navigationLinks = [
-    { path: '/canvas-art', label: 'Canvas Art' },
-    { path: '/interior-design', label: 'Interior Design' }
+    { path: '/canvas-art', label: 'Festmények' },
+    { path: '/interior-design', label: 'Lakberendezés' }
   ];
 
   const socialLinks = [
@@ -79,7 +79,7 @@ const Header = () => {
               to="/contact"
               className="ml-4 px-6 py-2 bg-black text-white hover:bg-black/90 transition-colors"
             >
-              Contact
+              Kapcsolat
             </Link>
           </nav>
 
@@ -167,7 +167,7 @@ const Header = () => {
                     to="/contact"
                     className="inline-block w-full py-3 bg-black text-white text-center hover:bg-black/90 transition-colors"
                   >
-                    Contact Us
+                    Kapcsolatfelvétel
                   </Link>
                 </div>
 

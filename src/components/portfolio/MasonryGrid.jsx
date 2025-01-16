@@ -1,4 +1,3 @@
-// src/components/portfolio/MasonryGrid.jsx
 import { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import Masonry from 'react-masonry-css';

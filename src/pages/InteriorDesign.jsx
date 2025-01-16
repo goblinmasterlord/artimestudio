@@ -6,36 +6,36 @@ import ContactSection from '../components/shared/ContactSection';
 import Hero from '../components/sections/Hero';
 import Container from '../components/ui/Container';
 import ServicesSection from '../components/services/ServicesSection';
-
+import AboutSection from '../components/shared/AboutSection';
 const InteriorDesign = () => {
   const portfolioItems = [
     {
       image: "/images/interior/modern-living.jpg",
-      title: "Modern Minimalist Living",
-      description: "A harmonious blend of form and function",
-      category: "Residential",
-      dimensions: "2500 sq ft"
+      title: "Modern Minimalista Otthon",
+      description: "Forma és funkció harmonikus találkozása",
+      category: "Lakás",
+      dimensions: "232 m²"
     },
     {
       image: "/images/interior/urban-loft.jpg",
-      title: "Urban Loft",
-      description: "Industrial elements meet contemporary comfort",
-      category: "Commercial",
-      dimensions: "3200 sq ft"
+      title: "Városi Loft",
+      description: "Ipari elemek találkozása a modern kényelemmel",
+      category: "Lakás",
+      dimensions: "297 m²"
     },
     {
       image: "/images/interior/workspace.jpg",
-      title: "Serene Workspace",
-      description: "Productive environment with natural elements",
-      category: "Office",
-      dimensions: "1800 sq ft"
+      title: "Nyugodt Munkakörnyezet",
+      description: "Produktív környezet természetes elemekkel",
+      category: "Iroda",
+      dimensions: "167 m²"
     },
     {
       image: "/images/interior/penthouse.jpg",
-      title: "Luxury Penthouse",
-      description: "Sophisticated living at its finest",
-      category: "Residential",
-      dimensions: "4500 sq ft"
+      title: "Luxus Penthouse",
+      description: "Kifinomult életstílus a legmagasabb szinten",
+      category: "Lakás",
+      dimensions: "418 m²"
     }
   ];
 
@@ -44,8 +44,8 @@ const InteriorDesign = () => {
       <Header />
       <main>
         <Hero 
-          title="Interior Design"
-          description="Transforming spaces into harmonious environments that reflect your unique style and needs."
+          title="Lakberendezés"
+          description="Segítek otthonod olyan harmonikus térré alakítani, amely tökéletesen tükrözi az egyéni stílusodat és igényeidet."
           image="/images/hero/interior-hero.jpg"
         />
         <section className="py-20">
@@ -55,6 +55,7 @@ const InteriorDesign = () => {
         </section>
         <ServicesSection type="interior" />
         <ContactSection />
+        <AboutSection />
       </main>
       <Footer />
     </div>

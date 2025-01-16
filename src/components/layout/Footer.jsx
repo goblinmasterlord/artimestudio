@@ -6,14 +6,14 @@ const Footer = () => {
 
   const footerLinks = [
     {
-      title: 'Services',
+      title: 'Szolgáltatások',
       items: [
-        { label: 'Canvas Art', path: '/canvas-art' },
-        { label: 'Interior Design', path: '/interior-design' },
+        { label: 'Festmények', path: '/canvas-art' },
+        { label: 'Lakberendezés', path: '/interior-design' },
       ]
     },
     {
-      title: 'Connect',
+      title: 'Közösségi média',
       items: [
         { label: 'Instagram', href: '#' },
         { label: 'LinkedIn', href: '#' },
@@ -31,7 +31,7 @@ const Footer = () => {
               artimestudio
             </Link>
             <p className="mt-4 text-sm opacity-70 max-w-sm">
-              Creating unique artistic experiences through canvas art and interior design.
+              Egyedi művészeti élményeket teremtek vászonképekkel és lakberendezési megoldásokkal.
             </p>
           </div>
 
@@ -69,14 +69,14 @@ const Footer = () => {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm opacity-70">
-            © {currentYear} artimestudio. All rights reserved.
+            © {currentYear} artimestudio. Minden jog fenntartva.
           </p>
           <div className="flex gap-6">
             <a href="#" className="text-sm opacity-70 hover:opacity-100 transition-opacity">
-              Privacy Policy
+              Adatvédelmi irányelvek
             </a>
             <a href="#" className="text-sm opacity-70 hover:opacity-100 transition-opacity">
-              Terms of Service
+              Felhasználási feltételek
             </a>
           </div>
         </div>
