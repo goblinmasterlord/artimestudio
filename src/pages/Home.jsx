@@ -31,13 +31,13 @@ const Home = () => {
     <div className="grid grid-cols-split h-screen">
       <SplitSection
         path="/canvas-art"
-        image="https://images.unsplash.com/photo-1581349485608-9469926a8e5e?auto=format&fit=crop&q=80"
+        image="/images/hero/canvas-split.jpg"
         title="Canvas Art"
         position="left"
       />
       <SplitSection
         path="/interior-design"
-        image="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80"
+        image="/images/hero/interior-split.jpg"
         title="Interior Design"
         position="right"
       />

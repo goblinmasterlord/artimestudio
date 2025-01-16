@@ -3,42 +3,75 @@ import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import MasonryGrid from '../components/portfolio/MasonryGrid';
 import ContactSection from '../components/shared/ContactSection';
-import { motion } from 'framer-motion';
+import Hero from '../components/sections/Hero';
+import Container from '../components/ui/Container';
+import ServicesSection from '../components/services/ServicesSection';
+import FadeIn from '../components/animations/FadeIn';
 
 const CanvasArt = () => {
   const portfolioItems = [
     {
-      image: "https://images.unsplash.com/photo-1580136579312-94651dfd596d",
+      image: "/images/canvas/abstract-harmony.jpg",
       title: "Abstract Harmony",
-      description: "Acrylic on canvas, 36x48 inches"
+      description: "A dynamic exploration of form and color",
+      category: "Abstract",
+      dimensions: "36x48 inches"
     },
     {
-      image: "https://images.unsplash.com/photo-1585385819171-99204906f1d1",
+      image: "/images/canvas/urban-rhythms.jpg",
       title: "Urban Rhythms",
-      description: "Oil on canvas, 24x36 inches"
+      description: "Contemporary interpretation of city life",
+      category: "Contemporary",
+      dimensions: "24x36 inches"
     },
-    // Add more items
+    {
+      image: "/images/canvas/serenity.jpg",
+      title: "Serenity",
+      description: "Minimalist expression of peace",
+      category: "Minimalist",
+      dimensions: "30x40 inches"
+    },
+    {
+      image: "/images/canvas/natural-flow.jpg",
+      title: "Natural Flow",
+      description: "Organic patterns in motion",
+      category: "Abstract",
+      dimensions: "40x60 inches"
+    },
+    {
+      image: "/images/canvas/geometric-dreams.jpg",
+      title: "Geometric Dreams",
+      description: "Mathematical precision meets artistic freedom",
+      category: "Geometric",
+      dimensions: "36x36 inches"
+    }
   ];
 
   return (
     <div>
       <Header />
       <main>
-        <motion.section 
-          className="pt-32 pb-16 px-8"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="max-w-7xl mx-auto">
-            <h1 className="font-display text-5xl mb-8">Canvas Art</h1>
-            <p className="max-w-2xl opacity-70 mb-16">
-              Explore our collection of original canvas paintings, each piece 
-              carefully crafted to bring unique artistic expression to your space.
-            </p>
-            <MasonryGrid items={portfolioItems} />
-          </div>
-        </motion.section>
+        <Hero 
+          title="Canvas Art"
+          description="Explore our collection of original canvas paintings, each piece carefully crafted to bring unique artistic expression to your space."
+          image="/images/hero/canvas-hero.jpg"
+        />
+        <section className="py-20">
+          <Container>
+            <FadeIn>
+              <div className="text-center mb-16">
+                <h2 className="font-display text-4xl mb-4">Our Portfolio</h2>
+                <p className="opacity-70 max-w-2xl mx-auto">
+                  Each piece tells a unique story, crafted with passion and attention to detail.
+                </p>
+              </div>
+            </FadeIn>
+            <FadeIn delay={0.2}>
+              <MasonryGrid items={portfolioItems} />
+            </FadeIn>
+          </Container>
+        </section>
+        <ServicesSection type="canvas" />
         <ContactSection />
       </main>
       <Footer />

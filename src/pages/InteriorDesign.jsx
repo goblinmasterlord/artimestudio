@@ -3,42 +3,57 @@ import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import MasonryGrid from '../components/portfolio/MasonryGrid';
 import ContactSection from '../components/shared/ContactSection';
-import { motion } from 'framer-motion';
+import Hero from '../components/sections/Hero';
+import Container from '../components/ui/Container';
+import ServicesSection from '../components/services/ServicesSection';
 
 const InteriorDesign = () => {
   const portfolioItems = [
     {
-      image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6",
+      image: "/images/interior/modern-living.jpg",
       title: "Modern Minimalist Living",
-      description: "Residential Project - New York"
+      description: "A harmonious blend of form and function",
+      category: "Residential",
+      dimensions: "2500 sq ft"
     },
     {
-      image: "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e",
+      image: "/images/interior/urban-loft.jpg",
       title: "Urban Loft",
-      description: "Commercial Space - Chicago"
+      description: "Industrial elements meet contemporary comfort",
+      category: "Commercial",
+      dimensions: "3200 sq ft"
     },
-    // Add more items
+    {
+      image: "/images/interior/workspace.jpg",
+      title: "Serene Workspace",
+      description: "Productive environment with natural elements",
+      category: "Office",
+      dimensions: "1800 sq ft"
+    },
+    {
+      image: "/images/interior/penthouse.jpg",
+      title: "Luxury Penthouse",
+      description: "Sophisticated living at its finest",
+      category: "Residential",
+      dimensions: "4500 sq ft"
+    }
   ];
 
   return (
     <div>
       <Header />
       <main>
-        <motion.section 
-          className="pt-32 pb-16 px-8"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="max-w-7xl mx-auto">
-            <h1 className="font-display text-5xl mb-8">Interior Design</h1>
-            <p className="max-w-2xl opacity-70 mb-16">
-              Discover our portfolio of thoughtfully designed spaces, where we transform 
-              interiors into harmonious environments that reflect your unique style.
-            </p>
+        <Hero 
+          title="Interior Design"
+          description="Transforming spaces into harmonious environments that reflect your unique style and needs."
+          image="/images/hero/interior-hero.jpg"
+        />
+        <section className="py-20">
+          <Container>
             <MasonryGrid items={portfolioItems} />
-          </div>
-        </motion.section>
+          </Container>
+        </section>
+        <ServicesSection type="interior" />
         <ContactSection />
       </main>
       <Footer />

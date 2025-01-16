@@ -1,19 +1,88 @@
 // src/components/layout/Footer.jsx
+import { Link } from 'react-router-dom';
+
 const Footer = () => {
-    return (
-      <footer className="w-full py-8 px-8 bg-white">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
+  const currentYear = new Date().getFullYear();
+
+  const footerLinks = [
+    {
+      title: 'Services',
+      items: [
+        { label: 'Canvas Art', path: '/canvas-art' },
+        { label: 'Interior Design', path: '/interior-design' },
+      ]
+    },
+    {
+      title: 'Connect',
+      items: [
+        { label: 'Instagram', href: '#' },
+        { label: 'LinkedIn', href: '#' },
+      ]
+    },
+  ];
+
+  return (
+    <footer className="bg-white border-t border-gray-100">
+      <div className="max-w-7xl mx-auto px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+          {/* Logo and description */}
+          <div className="col-span-2">
+            <Link to="/" className="font-display text-2xl tracking-wider">
+              artimestudio
+            </Link>
+            <p className="mt-4 text-sm opacity-70 max-w-sm">
+              Creating unique artistic experiences through canvas art and interior design.
+            </p>
+          </div>
+
+          {/* Links */}
+          {footerLinks.map((section) => (
+            <div key={section.title}>
+              <h3 className="font-medium mb-4">{section.title}</h3>
+              <ul className="space-y-3">
+                {section.items.map((item) => (
+                  <li key={item.label}>
+                    {item.path ? (
+                      <Link
+                        to={item.path}
+                        className="text-sm opacity-70 hover:opacity-100 transition-opacity"
+                      >
+                        {item.label}
+                      </Link>
+                    ) : (
+                      <a
+                        href={item.href}
+                        className="text-sm opacity-70 hover:opacity-100 transition-opacity"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {item.label}
+                      </a>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom bar */}
+        <div className="pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm opacity-70">
-            © {new Date().getFullYear()} artimestudio. All rights reserved.
+            © {currentYear} artimestudio. All rights reserved.
           </p>
-          <div className="flex gap-8 text-sm opacity-70">
-            <a href="#" className="hover:opacity-100 transition-opacity">Instagram</a>
-            <a href="#" className="hover:opacity-100 transition-opacity">LinkedIn</a>
-            <a href="#" className="hover:opacity-100 transition-opacity">Contact</a>
+          <div className="flex gap-6">
+            <a href="#" className="text-sm opacity-70 hover:opacity-100 transition-opacity">
+              Privacy Policy
+            </a>
+            <a href="#" className="text-sm opacity-70 hover:opacity-100 transition-opacity">
+              Terms of Service
+            </a>
           </div>
         </div>
-      </footer>
-    );
-  };
-  
-  export default Footer;
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
