@@ -74,7 +74,7 @@ const ContactSection = () => {
 
       setStatus({
         type: 'success',
-        message: 'Thank you for your message! We will get back to you soon.',
+        message: 'Köszönjük az üzeneted! Hamarosan jelentkezünk.',
       });
       setFormState({
         name: '',
@@ -85,7 +85,7 @@ const ContactSection = () => {
     } catch (error) {
       setStatus({
         type: 'error',
-        message: 'Sorry, something went wrong. Please try again later.',
+        message: 'Sajnos valami hiba történt. Kérlek, próbáld újra később.',
       });
     } finally {
       setIsSubmitting(false);
@@ -121,7 +121,7 @@ const ContactSection = () => {
                 >
                   <Alert variant={status.type === 'success' ? 'default' : 'destructive'}>
                     <AlertTitle>
-                      {status.type === 'success' ? 'Success!' : 'Error'}
+                      {status.type === 'success' ? 'Sikeres!' : 'Hiba'}
                     </AlertTitle>
                     <AlertDescription>
                       {status.message}
@@ -136,20 +136,20 @@ const ContactSection = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                <h2 className="font-display text-5xl mb-6">Let's create something special together</h2>
+                <h2 className="font-display text-5xl mb-6">Alkossunk együtt valami különlegeset</h2>
                 <p className="text-lg opacity-70 mb-16 leading-relaxed">
-                  Whether you're looking for a custom painting or need interior design advice,
-                  I'm here to help bring your vision to life.
+                  Akár egyedi festményt szeretnél, akár belsőépítészeti tanácsra van szükséged,
+                  itt vagyok, hogy segítsek megvalósítani az elképzeléseid.
                 </p>
               </motion.div>
               
               <div className="space-y-12">
-                <ContactInfo icon={MapPin} title="Studio">
+                <ContactInfo icon={MapPin} title="Műterem">
                   123 Art Studio Lane<br />
                   New York, NY 10001
                 </ContactInfo>
                 
-                <ContactInfo icon={Phone} title="Contact">
+                <ContactInfo icon={Phone} title="Elérhetőség">
                   <div className="space-y-1">
                     <a href="mailto:studio@example.com" className="block hover:opacity-100 transition-opacity">
                       studio@example.com
@@ -160,9 +160,9 @@ const ContactSection = () => {
                   </div>
                 </ContactInfo>
                 
-                <ContactInfo icon={Clock} title="Hours">
-                  Monday – Friday: 9:00 – 18:00<br />
-                  Weekends by appointment
+                <ContactInfo icon={Clock} title="Nyitvatartás">
+                  Hétfő – Péntek: 9:00 – 18:00<br />
+                  Hétvégén előzetes egyeztetés alapján
                 </ContactInfo>
               </div>
             </div>
@@ -177,7 +177,7 @@ const ContactSection = () => {
           >
             <form onSubmit={handleSubmit} className="space-y-8">
               <div className="grid md:grid-cols-2 gap-8">
-                <InputWrapper label="Name">
+                <InputWrapper label="Név">
                   <div className="relative">
                     <input
                       type="text"
@@ -199,7 +199,7 @@ const ContactSection = () => {
                   </div>
                 </InputWrapper>
 
-                <InputWrapper label="Email">
+                <InputWrapper label="E-mail">
                   <div className="relative">
                     <input
                       type="email"
@@ -222,7 +222,7 @@ const ContactSection = () => {
                 </InputWrapper>
               </div>
 
-              <InputWrapper label="Phone Number" required={false}>
+              <InputWrapper label="Telefonszám" required={false}>
                 <div className="relative">
                   <input
                     type="tel"
@@ -243,7 +243,7 @@ const ContactSection = () => {
                 </div>
               </InputWrapper>
 
-              <InputWrapper label="Message">
+              <InputWrapper label="Üzenet">
                 <div className="relative">
                   <textarea
                     name="message"
@@ -276,7 +276,7 @@ const ContactSection = () => {
                     className="relative z-10 flex items-center gap-2"
                     whileHover={{ x: -4 }}
                   >
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
+                    {isSubmitting ? 'Küldés...' : 'Üzenet küldése'}
                     <Send className={`w-4 h-4 transition-transform ${
                       isSubmitting ? 'animate-pulse' : 'group-hover:translate-x-1'
                     }`} />
