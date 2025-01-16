@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Italiana&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply antialiased;
+  }
+  
+  body {
+    @apply bg-white text-black font-sans;
+  }
+}
+
+@layer components {
+  .split-image {
+    @apply relative w-full h-screen overflow-hidden grayscale transition-all duration-400;
+  }
+  
+  .split-image:hover {
+    @apply grayscale-0;
+  }
+  
+  .image-overlay {
+    @apply absolute inset-0 bg-black bg-opacity-20 transition-opacity duration-400;
+  }
+  
+  .split-image:hover .image-overlay {
+    @apply opacity-0;
+  }
+}
