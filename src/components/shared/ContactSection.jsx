@@ -145,17 +145,17 @@ const ContactSection = () => {
               
               <div className="space-y-12">
                 <ContactInfo icon={MapPin} title="Műterem">
-                  123 Art Studio Lane<br />
-                  New York, NY 10001
+                  Egy kis utca 12.<br />
+                  1234 Budapest
                 </ContactInfo>
                 
                 <ContactInfo icon={Phone} title="Elérhetőség">
                   <div className="space-y-1">
                     <a href="mailto:studio@example.com" className="block hover:opacity-100 transition-opacity">
-                      studio@example.com
+                      hello@artimestudio.com
                     </a>
                     <a href="tel:+12345678901" className="block hover:opacity-100 transition-opacity">
-                      +1 (234) 567-8901
+                      +36 30 123 4567
                     </a>
                   </div>
                 </ContactInfo>

@@ -20,29 +20,29 @@ const CanvasArt = () => {
     },
     {
       image: "/images/canvas/urban-rhythms.jpg",
-      title: "Városi Ritmusok",
-      description: "A városi élet modern interpretációja",
+      title: "Absztrakt Színek",
+      description: "Színek és formák egyedi kombinációja",
       category: "Modern",
       dimensions: "60x90 cm"
     },
     {
       image: "/images/canvas/serenity.jpg",
-      title: "Nyugalom",
-      description: "Minimalista kifejezésmód",
+      title: "Színek és formák",
+      description: "Sok szép szín és forma együtt",
       category: "Minimalista",
       dimensions: "75x100 cm"
     },
     {
       image: "/images/canvas/natural-flow.jpg",
-      title: "Természetes Áramlás",
-      description: "Organikus minták mozgásban",
+      title: "Még egy absztrakt",
+      description: "Sok szép szín és forma együtt",
       category: "Absztrakt",
       dimensions: "100x150 cm"
     },
     {
       image: "/images/canvas/geometric-dreams.jpg",
-      title: "Geometrikus Álmok",
-      description: "Matematikai precizitás művészi szabadsággal",
+      title: "Színkavalkád",
+      description: "Sok szép szín és forma együtt",
       category: "Geometrikus",
       dimensions: "90x90 cm"
     }

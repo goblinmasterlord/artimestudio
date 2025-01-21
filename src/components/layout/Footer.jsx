@@ -31,7 +31,7 @@ const Footer = () => {
               artimestudio
             </Link>
             <p className="mt-4 text-sm opacity-70 max-w-sm">
-              Egyedi művészeti élményeket teremtek vászonképekkel és lakberendezési megoldásokkal.
+              Legyen szó lakberendezésről, vagy festményről, fontos hogy egyedi legyen, ami pont Hozzád illeszkedik.
             </p>
           </div>
 
