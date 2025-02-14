@@ -1,87 +1,55 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, memo, useMemo } from 'react';
 import { useInView } from 'react-intersection-observer';
 import Masonry from 'react-masonry-css';
 import ProjectCard from './ProjectCard';
 
-const MasonryGrid = ({ items }) => {
-  const [visibleItems, setVisibleItems] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+const MasonryGrid = memo(({ items }) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0.1
+    threshold: 0,
+    rootMargin: '100px 0px'
   });
 
-  const breakpointColumns = {
+  // Optimized breakpoint columns for better layout
+  const breakpointColumns = useMemo(() => ({
     default: 3,
+    1536: 3,
     1280: 3,
     1024: 2,
-    640: 1
-  };
+    768: 2,
+    640: 1,
+    480: 1
+  }), []);
 
-  const loadItems = useCallback(() => {
-    if (!items.length) return;
-    
-    setIsLoading(true);
-    const chunkSize = 6; // Increased chunk size for smoother loading
-    let currentIndex = 0;
+  // Improved masonry props with consistent spacing
+  const masonryProps = useMemo(() => ({
+    breakpointCols: breakpointColumns,
+    className: "flex -mx-4 w-auto", // Negative margin to offset padding
+    columnClassName: "px-4 space-y-8 mb-8" // Consistent vertical and horizontal spacing
+  }), [breakpointColumns]);
 
-    const loadNextChunk = () => {
-      if (currentIndex >= items.length) {
-        setIsLoading(false);
-        return;
-      }
-
-      const nextChunk = items.slice(
-        currentIndex,
-        currentIndex + chunkSize
-      );
-      
-      setVisibleItems(prev => [...prev, ...nextChunk]);
-      currentIndex += chunkSize;
-
-      if (currentIndex < items.length) {
-        // Use requestIdleCallback for better performance if available
-        if (window.requestIdleCallback) {
-          window.requestIdleCallback(() => setTimeout(loadNextChunk, 150));
-        } else {
-          setTimeout(loadNextChunk, 150);
-        }
-      } else {
-        setIsLoading(false);
-      }
-    };
-
-    loadNextChunk();
-  }, [items]);
-
-  useEffect(() => {
-    if (inView) {
-      loadItems();
-    }
-  }, [inView, loadItems]);
+  if (!items.length) return null;
 
   return (
-    <div ref={ref}>
-      <Masonry
-        breakpointCols={breakpointColumns}
-        className="flex w-auto -ml-8"
-        columnClassName="pl-8 bg-clip-padding"
-      >
-        {visibleItems.map((item, index) => (
-          <ProjectCard
-            key={item.title} // Using title as key instead of index
-            {...item}
-            delay={Math.min(index * 0.1, 1)} // Cap the maximum delay
-          />
-        ))}
-      </Masonry>
-      {isLoading && (
-        <div className="flex justify-center py-8">
-          <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-gray-900"></div>
-        </div>
+    <div 
+      ref={ref} 
+      className="max-w-[1400px] mx-auto px-4 sm:px-6 transform-gpu"
+    >
+      {inView && (
+        <Masonry {...masonryProps}>
+          {items.map((item, index) => (
+            <ProjectCard
+              key={`${item.title}-${index}`}
+              {...item}
+              index={index}
+            />
+          ))}
+        </Masonry>
       )}
     </div>
   );
-};
+});
+
+MasonryGrid.displayName = 'MasonryGrid';
 
 export default MasonryGrid;
