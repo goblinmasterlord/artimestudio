@@ -11,7 +11,6 @@ import PageHeader from '../components/sections/PageHeader';
 import { useState, useEffect } from 'react';
 import featuredProjectsData from '../data/featuredProjects.json';
 import portfolioItemsData from '../data/portfolioItems.json';
-import { Palette } from 'lucide-react';
 
 const CanvasArt = () => {
   const [featuredProjects, setFeaturedProjects] = useState([]);
@@ -21,8 +20,7 @@ const CanvasArt = () => {
   const navigationItems = [
     { id: 'about', label: 'Stúdió' },
     { id: 'featured', label: 'Projektek' },
-    { id: 'portfolio', label: 'Alkotások' },
-    { path: '/interior-design', label: 'Lakberendezés', icon: Palette }
+    { id: 'portfolio', label: 'Alkotások' }
   ];
 
   useEffect(() => {

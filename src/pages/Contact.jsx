@@ -263,12 +263,17 @@ const Contact = () => {
 
                 <motion.button
                   type="submit"
-                  className="group relative inline-flex items-center gap-2 bg-black text-white px-8 py-4 hover:bg-black/90 transition-all"
+                  className="group relative inline-flex items-center gap-2 bg-black text-white px-8 py-4 overflow-hidden"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
                   <span className="relative z-10">Üzenet küldése</span>
-                  <Send className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
+                  <Send className="w-4 h-4 relative z-10 transition-transform group-hover:translate-x-1" />
+                  <motion.div
+                    className="absolute inset-0 bg-black"
+                    initial={false}
+                    whileHover={{ scale: 1.5 }}
+                  />
                 </motion.button>
               </form>
             </motion.div>

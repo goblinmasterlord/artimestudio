@@ -75,16 +75,13 @@ const PageNav = ({ items = [], logo = "artimestudio" }) => {
               <button
                 key={item.id || item.path}
                 onClick={() => handleNavigation(item)}
-                className={`relative py-2 flex items-center gap-2 ${
-                  item.path ? 'text-black hover:text-black/70' : ''
-                }`}
+                className="relative py-2"
               >
                 <span className={`transition-opacity ${
                   (item.id && activeSection === item.id) ? 'opacity-100' : 'opacity-50 hover:opacity-70'
                 }`}>
                   {item.label}
                 </span>
-                {item.icon && <item.icon className="w-4 h-4" />}
                 {item.id && activeSection === item.id && (
                   <motion.div
                     layoutId="underline"
@@ -145,14 +142,13 @@ const PageNav = ({ items = [], logo = "artimestudio" }) => {
                       <button
                         key={item.id || item.path}
                         onClick={() => handleNavigation(item)}
-                        className={`block w-full text-left text-lg py-3 relative flex items-center gap-2 ${
+                        className={`block w-full text-left text-lg py-3 relative ${
                           (item.id && activeSection === item.id)
                             ? 'text-gray-900' 
                             : 'text-gray-500 hover:text-gray-900'
                         }`}
                       >
-                        <span>{item.label}</span>
-                        {item.icon && <item.icon className="w-4 h-4" />}
+                        {item.label}
                         {item.id && activeSection === item.id && (
                           <motion.div
                             layoutId="mobile-underline"

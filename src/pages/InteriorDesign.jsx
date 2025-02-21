@@ -6,14 +6,12 @@ import CrossPromotionBanner from '../components/sections/CrossPromotionBanner';
 import PageNav from '../components/layout/PageNav';
 import PageHeader from '../components/sections/PageHeader';
 import AboutSection from '../components/shared/AboutSection';
-import { Palette } from 'lucide-react';
 
 const InteriorDesign = () => {
   const navigationItems = [
     { id: 'about', label: 'Stúdió' },
     { id: 'services', label: 'Szolgáltatások' },
-    { id: 'projects', label: 'Portfólió' },
-    { path: '/canvas-art', label: 'Festmények', icon: Palette }
+    { id: 'projects', label: 'Portfólió' }
   ];
 
   const featuredProjects = [
