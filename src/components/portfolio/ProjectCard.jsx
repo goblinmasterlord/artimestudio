@@ -16,7 +16,10 @@ const ProjectCard = memo(({ title, image, category, description, dimensions, ind
       <div className="relative aspect-[4/5] overflow-hidden">
         <img
           src={image}
+          srcSet={`${image}?w=300 300w, ${image}?w=600 600w, ${image}?w=900 900w`}
+          sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
           alt={title}
+          loading="lazy"
           className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/0 to-black/60" />

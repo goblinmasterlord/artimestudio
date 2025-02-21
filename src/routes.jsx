@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import Home from './pages/Home';
 import CanvasArt from './pages/CanvasArt';
 import InteriorDesign from './pages/InteriorDesign';
+import Contact from './pages/Contact';
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
   {
     path: '/interior-design',
     element: <InteriorDesign />,
+  },
+  {
+    path: '/contact',
+    element: <Contact />,
   },
 ]);
 

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Palette, Lightbulb, Ruler } from 'lucide-react';
+import { Palette, Lightbulb, Ruler, ArrowRight } from 'lucide-react';
 import Container from '../ui/Container';
 
 const SectionTitle = ({ title, description }) => (
@@ -26,49 +26,93 @@ const SectionTitle = ({ title, description }) => (
 const ServiceCard = ({ icon: Icon, title, description, features, index }) => {
   return (
     <motion.div
-      className="relative bg-gradient-to-br from-black/[0.02] to-black/[0.04] p-8 lg:p-12 group overflow-hidden"
+      className="group relative bg-white border border-black/5 p-8 lg:p-12 overflow-hidden"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      transition={{ delay: index * 0.2 }}
+      whileHover={{ y: -8 }}
     >
-      {/* Decorative elements */}
-      <div className="absolute top-0 right-0 w-32 h-32 bg-white/40 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-30 transition-opacity duration-700" />
-      <div className="absolute bottom-0 left-0 w-24 h-24 bg-black/5 rounded-full blur-2xl transform translate-x-1/2 translate-y-1/2" />
-      
-      <div className="relative">
-        <div className="inline-flex items-center justify-center w-14 h-14 bg-black/[0.03] mb-8 transform-gpu transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
-          <Icon className="w-7 h-7" />
-        </div>
+      {/* Background Pattern */}
+      <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(0,0,0,0.02)_25%,rgba(0,0,0,0.02)_50%,transparent_50%,transparent_75%,rgba(0,0,0,0.02)_75%)] bg-[length:8px_8px] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-        <h3 className="font-display text-2xl mb-4 group-hover:translate-x-1 transition-transform duration-300">
+      {/* Icon */}
+      <div className="relative mb-8">
+        <motion.div 
+          className="relative w-16 h-16 bg-black/5 flex items-center justify-center"
+          whileHover={{ rotate: 90 }}
+          transition={{ type: "spring", stiffness: 200, damping: 10 }}
+        >
+          <Icon className="w-8 h-8" />
+          <motion.div 
+            className="absolute inset-0 bg-black/5"
+            initial={{ scale: 0.8 }}
+            whileHover={{ scale: 1.2, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          />
+        </motion.div>
+      </div>
+
+      {/* Content */}
+      <div className="relative">
+        <motion.h3 
+          className="font-display text-2xl mb-4"
+          initial={{ opacity: 0.7 }}
+          whileHover={{ opacity: 1 }}
+        >
           {title}
-        </h3>
-        
-        <p className="opacity-70 leading-relaxed mb-8">
+        </motion.h3>
+        <p className="text-lg opacity-70 mb-8 leading-relaxed">
           {description}
         </p>
 
+        {/* Features */}
         <ul className="space-y-4">
-          {features.map((feature, idx) => (
+          {features.map((feature, i) => (
             <motion.li 
-              key={idx} 
-              className="flex items-start gap-4"
-              initial={{ opacity: 0, x: -10 }}
+              key={i}
+              className="flex items-center gap-4 text-sm"
+              initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: 0.2 + (idx * 0.1) }}
+              transition={{ delay: 0.1 * i }}
             >
-              <div className="w-6 h-6 bg-black/[0.03] flex items-center justify-center flex-shrink-0 mt-0.5 transform-gpu transition-transform duration-500 group-hover:rotate-3">
-                <div className="w-1.5 h-1.5 bg-black" />
-              </div>
-              <span className="opacity-70 group-hover:opacity-90 transition-opacity">
+              <motion.div 
+                className="w-2 h-2 bg-black/40 rounded-full"
+                whileHover={{ scale: 1.5 }}
+              />
+              <span className="opacity-70 group-hover:opacity-100 transition-opacity">
                 {feature}
               </span>
             </motion.li>
           ))}
         </ul>
+
+        {/* Learn More Link */}
+        <motion.div
+          className="absolute bottom-0 right-0 opacity-0 group-hover:opacity-100 transition-opacity"
+          initial={{ y: 20 }}
+          whileHover={{ y: 0 }}
+        >
+          <div className="flex items-center gap-2 text-sm font-medium">
+            <span>Részletek</span>
+            <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+          </div>
+        </motion.div>
       </div>
+
+      {/* Hover Effects */}
+      <motion.div 
+        className="absolute inset-x-0 bottom-0 h-1 bg-black origin-left"
+        initial={{ scaleX: 0 }}
+        whileHover={{ scaleX: 1 }}
+        transition={{ duration: 0.3 }}
+      />
+      <motion.div 
+        className="absolute inset-y-0 right-0 w-1 bg-black origin-bottom"
+        initial={{ scaleY: 0 }}
+        whileHover={{ scaleY: 1 }}
+        transition={{ duration: 0.3, delay: 0.1 }}
+      />
     </motion.div>
   );
 };
@@ -76,52 +120,49 @@ const ServiceCard = ({ icon: Icon, title, description, features, index }) => {
 const InteriorServicesSection = () => {
   const services = [
     {
-      icon: Ruler,
-      title: "Teljes Lakberendezés",
-      description: "Átfogó lakberendezési szolgáltatás, amely az első koncepciótól a megvalósításig minden részletre kiterjed.",
+      icon: Palette,
+      title: "Koncepció és Tervezés",
+      description: "Az Ön igényeire és stílusára szabott egyedi lakberendezési koncepció kidolgozása.",
       features: [
-        "Részletes koncepció és tervek készítése",
-        "Anyag- és bútorválasztás",
-        "Kivitelezés koordinálása",
-        "Styling és dekoráció",
-        "Műszaki dokumentáció"
+        "Személyre szabott tervezés",
+        "3D látványtervek",
+        "Színkoncepció kidolgozása",
+        "Anyaghasználati javaslatok"
       ]
     },
     {
-      icon: Palette,
-      title: "Részleges Tervezés",
-      description: "Egy-egy helyiség vagy funkció újragondolása, felújítása vagy átalakítása az igényeidnek megfelelően.",
+      icon: Ruler,
+      title: "Térkialakítás",
+      description: "A tér optimális kihasználása és a funkciók harmonikus elrendezése.",
       features: [
-        "Helyiségek újratervezése",
-        "Bútorozási javaslatok",
-        "Színkoncepció kidolgozása",
+        "Alaprajzi tervezés",
+        "Bútorozási terv",
         "Világítástechnika",
-        "3D látványtervek"
+        "Tárolási megoldások"
       ]
     },
     {
       icon: Lightbulb,
-      title: "Konzultáció",
-      description: "Szakmai tanácsadás és ötletelés, hogy magabiztosan hozhass döntéseket a tered kialakításában.",
+      title: "Projekt Menedzsment",
+      description: "A teljes lakberendezési folyamat koordinálása és felügyelete.",
       features: [
-        "Személyes vagy online konzultáció",
-        "Stílus és koncepció tanácsadás",
-        "Színek és anyagok",
-        "Bútorozási tippek",
-        "Shopping lista"
+        "Kivitelezők koordinálása",
+        "Költségvetés kezelése",
+        "Ütemterv készítése",
+        "Minőségellenőrzés"
       ]
     }
   ];
 
   return (
-    <section className="py-32">
+    <section className="py-32 bg-white">
       <Container>
         <SectionTitle 
           title="Szolgáltatások"
           description="Válaszd ki a számodra legmegfelelőbb szolgáltatást, hogy együtt megvalósíthassuk az elképzeléseidet."
         />
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+        <div className="grid md:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <ServiceCard key={service.title} {...service} index={index} />
           ))}

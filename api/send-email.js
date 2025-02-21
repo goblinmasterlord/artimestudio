@@ -1,26 +1,48 @@
 // api/send-email.js
 import { Resend } from 'resend';
+import DOMPurify from 'dompurify';
 
 const resend = new Resend(process.env.VITE_RESEND_API_KEY);
+
+// Very basic rate limiting (in-memory, resets on server restart)
+const requestCounts = {};
+const MAX_REQUESTS_PER_MINUTE = 5;
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
+  // Basic Rate Limiting
+  const clientIP = req.headers['x-forwarded-for'] || req.socket.remoteAddress; // Get client IP
+  if (requestCounts[clientIP] && requestCounts[clientIP] >= MAX_REQUESTS_PER_MINUTE) {
+      return res.status(429).json({ error: 'Too many requests' });
+  }
+  requestCounts[clientIP] = (requestCounts[clientIP] || 0) + 1;
+  setTimeout(() => {
+      requestCounts[clientIP] = Math.max(0, requestCounts[clientIP] - 1);
+  }, 60000); // Reset count after 1 minute
+
+
   try {
     const { name, email, phone, message } = req.body;
 
+    // Sanitize input
+    const sanitizedName = DOMPurify.sanitize(name);
+    const sanitizedEmail = DOMPurify.sanitize(email);
+    const sanitizedPhone = DOMPurify.sanitize(phone);
+    const sanitizedMessage = DOMPurify.sanitize(message);
+
     const data = await resend.emails.send({
       from: 'Artimestudio <onboarding@resend.dev>',
-      to: ['marci.mocsonoky@gmail.com'], //
-      reply_to: email,
-      subject: `New Contact Form Submission from ${name}`,
+      to: ['marci.mocsonoky@gmail.com'], // Replace with your email
+      reply_to: sanitizedEmail,
+      subject: `New Contact Form Submission from ${sanitizedName}`,
       react: EmailTemplate({
-        name,
-        email,
-        phone,
-        message,
+        name: sanitizedName,
+        email: sanitizedEmail,
+        phone: sanitizedPhone,
+        message: sanitizedMessage,
       }),
     });
 

@@ -7,8 +7,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        display: ['Italiana', 'serif'],
-        sans: ['Inter', 'sans-serif'],
+        display: ['Playfair Display', 'serif'],
+        sans: ['Plus Jakarta Sans', 'sans-serif'],
       },
       transitionDuration: {
         '400': '400ms',

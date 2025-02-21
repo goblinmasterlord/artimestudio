@@ -1,14 +1,21 @@
 // src/pages/InteriorDesign.jsx
-import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
-import ContactSection from '../components/shared/ContactSection';
-import Hero from '../components/sections/Hero';
-import Container from '../components/ui/Container';
 import ProjectsSection from '../components/sections/ProjectsSection';
 import InteriorServicesSection from '../components/sections/InteriorServicesSection';
 import CrossPromotionBanner from '../components/sections/CrossPromotionBanner';
+import PageNav from '../components/layout/PageNav';
+import PageHeader from '../components/sections/PageHeader';
+import AboutSection from '../components/shared/AboutSection';
+import { Palette } from 'lucide-react';
 
 const InteriorDesign = () => {
+  const navigationItems = [
+    { id: 'about', label: 'Stúdió' },
+    { id: 'services', label: 'Szolgáltatások' },
+    { id: 'projects', label: 'Portfólió' },
+    { path: '/canvas-art', label: 'Festmények', icon: Palette }
+  ];
+
   const featuredProjects = [
     {
       image: "/images/interior/modern-living.jpg",
@@ -66,23 +73,46 @@ const InteriorDesign = () => {
     }
   ];
 
+  const handleScrollDown = () => {
+    const aboutSection = document.getElementById('about');
+    if (aboutSection) {
+      const offset = 80;
+      const elementPosition = aboutSection.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <div>
-      <Header />
+      <PageNav items={navigationItems} />
       <main className="overflow-hidden">
-        <Hero 
+        <PageHeader 
           title="Lakberendezés"
           description="Segítek otthonod olyan harmonikus térré alakítani, amely tökéletesen tükrözi az egyéni stílusodat és igényeidet."
           image="/images/hero/interior-hero.jpg"
+          onScrollDown={handleScrollDown}
         />
         
-        <InteriorServicesSection />
+        <div id="about">
+          <AboutSection />
+        </div>
 
-        <ProjectsSection
-          title="Kiemelt Projektek"
-          description="Fedezd fel néhány közelmúltbeli projektünket, amelyek tökéletesen példázzák tervezési filozófiánkat és megközelítésünket."
-          items={featuredProjects}
-        />
+        <div id="services">
+          <InteriorServicesSection />
+        </div>
+
+        <div id="projects">
+          <ProjectsSection
+            title="Portfólió"
+            description="Fedezd fel néhány közelmúltbeli projektemet, amelyek tökéletesen példázzák tervezési filozófiámat és megközelítését."
+            items={featuredProjects}
+          />
+        </div>
 
         <CrossPromotionBanner 
           title="Egyedi Festmények"
@@ -91,8 +121,6 @@ const InteriorDesign = () => {
           linkTo="/canvas-art"
           linkText="Festmények felfedezése"
         />
-
-        <ContactSection />
       </main>
       <Footer />
     </div>

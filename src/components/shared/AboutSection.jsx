@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Container from '../ui/Container';
 import aboutImage from '/images/about/about-image.jpg';
+
 const AboutSection = () => {
   return (
     <section className="py-32 bg-black/[0.02]">
@@ -10,12 +11,13 @@ const AboutSection = () => {
           {/* Image Column */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
+            whileHover={{ scale: 1.02 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="relative"
+            className="relative max-w-md mx-auto lg:mx-0"
           >
-            <div className="relative aspect-[3/4]">
+            <div className="relative aspect-[4/5] overflow-hidden">
               <img 
                 src={aboutImage} 
                 alt="Portrait" 
@@ -23,14 +25,14 @@ const AboutSection = () => {
               />
               {/* Decorative elements */}
               <motion.div 
-                className="absolute -top-4 -right-4 w-24 h-24 border border-black"
+                className="absolute -top-4 -right-4 w-16 h-16 border border-black"
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.3 }}
               />
               <motion.div 
-                className="absolute -bottom-4 -left-4 w-32 h-32 border border-black"
+                className="absolute -bottom-4 -left-4 w-24 h-24 border border-black"
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -51,18 +53,19 @@ const AboutSection = () => {
             <div className="w-12 h-px bg-black mb-8" />
             
             <div className="max-w-lg">
-              <h2 className="font-display text-5xl mb-8">Szia, Nagy Réka vagyok</h2>
+              <h2 className="font-display text-5xl mb-8">Az artimestudio-ról</h2>
               
               <div className="space-y-6 text-lg opacity-70 leading-relaxed">
                 <p>
-                  Szenvedélyem a művészet és a design. Több mint egy évtizede festek és tervezek 
-                  egyedi tereket, amelyek tükrözik az emberek személyiségét és történetét.
+                  Az artimestudio egy olyan kreatív műhely, ahol a művészet és a design 
+                  találkozik. Célunk, hogy egyedi és személyre szabott megoldásokat 
+                  kínáljunk ügyfeleinknek, legyen szó akár festményről, akár lakberendezésről.
                 </p>
                 
                 <p>
-                  Hiszem, hogy minden otthon és tér egyedi történetet mesél. Akár egy festményen, 
-                  akár egy belső téren dolgozom, célom, hogy ezt a történetet a lehető 
-                  legkifejezőbben jelenítsem meg.
+                  Minden projektünk egy közös utazás, ahol az Ön elképzelései és a mi 
+                  szakértelmünk együtt hozza létre azt a tökéletes végeredményt, ami 
+                  nem csak szép, de funkcionális és időtálló is.
                 </p>
                 
               </div>
