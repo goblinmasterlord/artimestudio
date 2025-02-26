@@ -66,10 +66,10 @@ const PageNav = ({ items = [], logo = "artimestudio", secondaryCta = null }) => 
     <>
       <header 
         className={`fixed w-full z-50 transition-all duration-300 ${
-          scrolled ? 'py-4 bg-white/90 backdrop-blur-sm shadow-sm' : 'py-6'
+          scrolled ? 'py-3 bg-white/90 backdrop-blur-sm shadow-sm' : 'py-4'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-8 flex justify-between items-center h-[60px]">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 flex justify-between items-center h-[50px]">
           <Link 
             to="/" 
             className="font-display text-xl md:text-2xl tracking-wider hover:opacity-70 transition-opacity"

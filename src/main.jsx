@@ -14,6 +14,29 @@ const LoadingFallback = () => (
   </div>
 );
 
+// Add event listener to help debug and fix duplicate content issues
+if (process.env.NODE_ENV === 'development') {
+  const observer = new MutationObserver((mutations) => {
+    for (const mutation of mutations) {
+      if (mutation.type === 'childList' && mutation.addedNodes.length) {
+        const mainElements = document.querySelectorAll('main');
+        if (mainElements.length > 1) {
+          console.warn('Multiple main elements detected:', mainElements.length);
+          // Keep only the most recent main element
+          for (let i = 0; i < mainElements.length - 1; i++) {
+            mainElements[i].remove();
+          }
+        }
+      }
+    }
+  });
+  
+  // Start observing once DOM is loaded
+  window.addEventListener('DOMContentLoaded', () => {
+    observer.observe(document.body, { childList: true, subtree: true });
+  });
+}
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Suspense fallback={<LoadingFallback />}>
