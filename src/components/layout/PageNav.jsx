@@ -1,13 +1,21 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
-const PageNav = ({ items = [], logo = "artimestudio" }) => {
+const PageNav = ({ items = [], logo = "artimestudio", secondaryCta = null }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Reset active section when location changes
+  useEffect(() => {
+    setActiveSection(null);
+    // Close mobile menu when navigating
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -61,7 +69,7 @@ const PageNav = ({ items = [], logo = "artimestudio" }) => {
           scrolled ? 'py-4 bg-white/90 backdrop-blur-sm shadow-sm' : 'py-6'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-8 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 flex justify-between items-center h-[60px]">
           <Link 
             to="/" 
             className="font-display text-xl md:text-2xl tracking-wider hover:opacity-70 transition-opacity"
@@ -86,10 +94,21 @@ const PageNav = ({ items = [], logo = "artimestudio" }) => {
                   <motion.div
                     layoutId="underline"
                     className="absolute bottom-0 left-0 w-full h-px bg-black"
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
                   />
                 )}
               </button>
             ))}
+            
+            {secondaryCta && (
+              <Link 
+                to={secondaryCta.path}
+                className="px-6 py-2 border border-black text-black hover:bg-black hover:text-white transition-colors"
+              >
+                {secondaryCta.label}
+              </Link>
+            )}
+            
             <Link 
               to="/contact"
               className="ml-4 px-6 py-2 bg-black text-white hover:bg-black/90 transition-colors"
@@ -153,11 +172,21 @@ const PageNav = ({ items = [], logo = "artimestudio" }) => {
                           <motion.div
                             layoutId="mobile-underline"
                             className="absolute bottom-0 left-0 w-8 h-px bg-black"
+                            transition={{ duration: 0.3, ease: "easeInOut" }}
                           />
                         )}
                       </button>
                     ))}
                   </div>
+
+                  {secondaryCta && (
+                    <Link 
+                      to={secondaryCta.path}
+                      className="inline-block w-full py-3 mb-4 border border-black text-black text-center hover:bg-black hover:text-white transition-colors"
+                    >
+                      {secondaryCta.label}
+                    </Link>
+                  )}
 
                   <Link 
                     to="/contact"

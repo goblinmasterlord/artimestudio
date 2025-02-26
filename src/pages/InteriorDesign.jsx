@@ -6,6 +6,7 @@ import CrossPromotionBanner from '../components/sections/CrossPromotionBanner';
 import PageNav from '../components/layout/PageNav';
 import PageHeader from '../components/sections/PageHeader';
 import AboutSection from '../components/shared/AboutSection';
+import PageTransition from '../components/animations/PageTransition';
 
 const InteriorDesign = () => {
   const navigationItems = [
@@ -13,6 +14,11 @@ const InteriorDesign = () => {
     { id: 'services', label: 'Szolgáltatások' },
     { id: 'projects', label: 'Portfólió' }
   ];
+
+  const secondaryCta = {
+    path: '/canvas-art',
+    label: 'Festmények'
+  };
 
   const featuredProjects = [
     {
@@ -86,42 +92,44 @@ const InteriorDesign = () => {
   };
 
   return (
-    <div>
-      <PageNav items={navigationItems} />
-      <main className="overflow-hidden">
-        <PageHeader 
-          title="Lakberendezés"
-          description="Segítek otthonod olyan harmonikus térré alakítani, amely tökéletesen tükrözi az egyéni stílusodat és igényeidet."
-          image="/images/hero/interior-hero.jpg"
-          onScrollDown={handleScrollDown}
-        />
-        
-        <div id="about">
-          <AboutSection />
-        </div>
-
-        <div id="services">
-          <InteriorServicesSection />
-        </div>
-
-        <div id="projects">
-          <ProjectsSection
-            title="Portfólió"
-            description="Fedezd fel néhány közelmúltbeli projektemet, amelyek tökéletesen példázzák tervezési filozófiámat és megközelítését."
-            items={featuredProjects}
+    <PageTransition>
+      <div>
+        <PageNav items={navigationItems} secondaryCta={secondaryCta} />
+        <main className="overflow-hidden">
+          <PageHeader 
+            title="Lakberendezés"
+            description="Segítek otthonod olyan harmonikus térré alakítani, amely tökéletesen tükrözi az egyéni stílusodat és igényeidet."
+            image="/images/hero/interior-hero.jpg"
+            onScrollDown={handleScrollDown}
           />
-        </div>
+          
+          <div id="about">
+            <AboutSection />
+          </div>
 
-        <CrossPromotionBanner 
-          title="Egyedi Festmények"
-          description="Fedezd fel egyedi vászonfestményeimet, amelyek tökéletesen kiegészítik a lakberendezési projekteket és egyedi karaktert adnak a tereknek."
-          image="/images/banners/canvas-promo.jpg"
-          linkTo="/canvas-art"
-          linkText="Festmények felfedezése"
-        />
-      </main>
-      <Footer />
-    </div>
+          <div id="services">
+            <InteriorServicesSection />
+          </div>
+
+          <div id="projects">
+            <ProjectsSection
+              title="Portfólió"
+              description="Fedezd fel néhány közelmúltbeli projektemet, amelyek tökéletesen példázzák tervezési filozófiámat és megközelítését."
+              items={featuredProjects}
+            />
+          </div>
+
+          <CrossPromotionBanner 
+            title="Egyedi Festmények"
+            description="Fedezd fel egyedi vászonfestményeimet, amelyek tökéletesen kiegészítik a lakberendezési projekteket és egyedi karaktert adnak a tereknek."
+            image="/images/banners/canvas-promo.jpg"
+            linkTo="/canvas-art"
+            linkText="Festmények felfedezése"
+          />
+        </main>
+        <Footer />
+      </div>
+    </PageTransition>
   );
 };
 

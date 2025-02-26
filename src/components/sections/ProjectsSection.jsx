@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Container from '../ui/Container';
 import SectionTitle from '../ui/SectionTitle';
 import { X, ArrowRight, Maximize2, Clock, Grid, MapPin, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -24,7 +25,7 @@ const ProjectCard = ({ project, index, onClick }) => {
             alt={project.title}
             loading="lazy"
             decoding="async"
-            className="object-cover w-full h-full transform transition-transform duration-700 group-hover:scale-105"
+            className="object-cover w-full h-full transform transition-transform duration-700 group-hover:scale-105 will-change-transform"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/0 opacity-0 group-hover:opacity-100 transition-all duration-300" />
           
@@ -41,7 +42,17 @@ const ProjectCard = ({ project, index, onClick }) => {
 };
 
 const ProjectModal = ({ project, onClose }) => {
+  const navigate = useNavigate();
+  
   if (!project) return null;
+
+  const handleContactClick = () => {
+    onClose();
+    // Use a small timeout to allow the modal to close smoothly before navigation
+    setTimeout(() => {
+      navigate('/contact');
+    }, 300);
+  };
 
   return (
     <motion.div 
@@ -52,7 +63,7 @@ const ProjectModal = ({ project, onClose }) => {
       onClick={onClose}
     >
       <motion.div 
-        className="bg-white w-full max-w-6xl max-h-[90vh] overflow-y-auto rounded-xl"
+        className="bg-white w-full max-w-6xl max-h-[90vh] overflow-y-auto"
         initial={{ scale: 0.95, y: 20, opacity: 0 }}
         animate={{ scale: 1, y: 0, opacity: 1 }}
         exit={{ scale: 0.95, y: 20, opacity: 0 }}
@@ -75,7 +86,7 @@ const ProjectModal = ({ project, onClose }) => {
           <div className="p-12 space-y-8 bg-white relative">
             <button 
               onClick={onClose}
-              className="absolute top-4 right-4 z-10 bg-white/90 backdrop-blur-sm p-2 rounded-full hover:bg-white transition-colors"
+              className="absolute top-4 right-4 z-10 bg-white/90 backdrop-blur-sm p-2 hover:bg-white transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
@@ -115,7 +126,8 @@ const ProjectModal = ({ project, onClose }) => {
 
             {/* Call to Action */}
             <motion.button
-              className="inline-flex items-center gap-2 text-sm font-medium bg-black text-white px-6 py-3 rounded-full hover:gap-3 transition-all"
+              onClick={handleContactClick}
+              className="inline-flex items-center gap-2 text-sm font-medium bg-black text-white px-6 py-3 hover:gap-3 transition-all"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >

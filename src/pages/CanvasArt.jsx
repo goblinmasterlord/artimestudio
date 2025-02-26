@@ -8,6 +8,7 @@ import AboutSection from '../components/shared/AboutSection';
 import CrossPromotionBanner from '../components/sections/CrossPromotionBanner';
 import PageNav from '../components/layout/PageNav';
 import PageHeader from '../components/sections/PageHeader';
+import PageTransition from '../components/animations/PageTransition';
 import { useState, useEffect } from 'react';
 import featuredProjectsData from '../data/featuredProjects.json';
 import portfolioItemsData from '../data/portfolioItems.json';
@@ -22,6 +23,11 @@ const CanvasArt = () => {
     { id: 'featured', label: 'Projektek' },
     { id: 'portfolio', label: 'Alkotások' }
   ];
+
+  const secondaryCta = {
+    path: '/interior-design',
+    label: 'Lakberendezés'
+  };
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -48,62 +54,64 @@ const CanvasArt = () => {
   };
 
   return (
-    <div>
-      <PageNav items={navigationItems} />
-      <main className="overflow-hidden">
-        <PageHeader 
-          title="Festmények"
-          description="Készíttess olyan vászonfestményt, amelyik tökéletesen illeszkedik Hozzád és otthonodhoz."
-          image="/images/hero/canvas-hero.jpg"
-          onScrollDown={handleScrollDown}
-        />
-        
-        <div id="about">
-          <AboutSection />
-        </div>
-
-        {isLoading ? (
-          <div className="text-center py-20">
-            <p>Loading...</p>
+    <PageTransition>
+      <div>
+        <PageNav items={navigationItems} secondaryCta={secondaryCta} />
+        <main className="overflow-hidden">
+          <PageHeader 
+            title="Festmények"
+            description="Készíttess olyan vászonfestményt, amelyik tökéletesen illeszkedik Hozzád és otthonodhoz."
+            image="/images/hero/canvas-hero.jpg"
+            onScrollDown={handleScrollDown}
+          />
+          
+          <div id="about">
+            <AboutSection />
           </div>
-        ) : (
-          <>
-            <div id="featured">
-              <ProjectsSection
-                title="Projektek"
-                description="Fedezd fel néhány közelmúltbeli projektemet, amelyek tökéletesen példázzák művészeti filozófiámat és megközelítését."
-                items={featuredProjects}
-              />
-            </div>
 
-            <div id="portfolio" className="py-20">
-              <Container>
-                <FadeIn>
-                  <div className="text-center mb-16">
-                    <h2 className="font-display text-4xl mb-4">Alkotásaim</h2>
-                    <p className="text-lg opacity-70 max-w-2xl mx-auto">
-                      Minden olajfestményem egyedi történetet mesél el és kifejetten illeszkedik Hozzád és otthonodhoz. Itt van néhány korábbi alkotásom.
-                    </p>
-                  </div>
-                </FadeIn>
-                <FadeIn delay={0.2}>
-                  <MasonryGrid items={portfolioItems} />
-                </FadeIn>
-              </Container>
+          {isLoading ? (
+            <div className="text-center py-20">
+              <p>Loading...</p>
             </div>
-          </>
-        )}
+          ) : (
+            <>
+              <div id="featured">
+                <ProjectsSection
+                  title="Projektek"
+                  description="Fedezd fel néhány közelmúltbeli projektemet, amelyek tökéletesen példázzák művészeti filozófiámat és megközelítését."
+                  items={featuredProjects}
+                />
+              </div>
 
-        <CrossPromotionBanner 
-          title="Lakberendezési Szolgáltatások"
-          description="Fedezd fel lakberendezési szolgáltatásaimat, ahol a művészet és a design találkozik, hogy egyedi és harmonikus tereket alkossunk."
-          image="/images/banners/interior-promo.jpg"
-          linkTo="/interior-design"
-          linkText="Lakberendezés felfedezése"
-        />
-      </main>
-      <Footer />
-    </div>
+              <div id="portfolio" className="py-20">
+                <Container>
+                  <FadeIn>
+                    <div className="text-center mb-16">
+                      <h2 className="font-display text-4xl mb-4">Alkotásaim</h2>
+                      <p className="text-lg opacity-70 max-w-2xl mx-auto">
+                        Minden olajfestményem egyedi történetet mesél el és kifejetten illeszkedik Hozzád és otthonodhoz. Itt van néhány korábbi alkotásom.
+                      </p>
+                    </div>
+                  </FadeIn>
+                  <FadeIn delay={0.2}>
+                    <MasonryGrid items={portfolioItems} />
+                  </FadeIn>
+                </Container>
+              </div>
+            </>
+          )}
+
+          <CrossPromotionBanner 
+            title="Lakberendezési Szolgáltatások"
+            description="Fedezd fel lakberendezési szolgáltatásaimat, ahol a művészet és a design találkozik, hogy egyedi és harmonikus tereket alkossunk."
+            image="/images/banners/interior-promo.jpg"
+            linkTo="/interior-design"
+            linkText="Lakberendezés felfedezése"
+          />
+        </main>
+        <Footer />
+      </div>
+    </PageTransition>
   );
 };
 

@@ -39,7 +39,7 @@ const CrossPromotionBanner = ({
 
             <Link to={linkTo}>
               <motion.div
-                className="inline-flex items-center gap-2 bg-white text-black px-8 py-4 rounded-full text-sm font-medium hover:gap-4 transition-all group"
+                className="inline-flex items-center gap-2 bg-white text-black px-8 py-4 text-sm font-medium hover:gap-4 transition-all group"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >

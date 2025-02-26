@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import PageTransition from '../components/animations/PageTransition';
 
 const SplitSection = ({ path, image, title, position }) => {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const SplitSection = ({ path, image, title, position }) => {
       transition={{ duration: 0.6 }}
     >
       <motion.div 
-        className="w-full h-full bg-cover bg-center transform transition-transform duration-700"
+        className="w-full h-full bg-cover bg-center transform transition-transform duration-700 will-change-transform"
         style={{ backgroundImage: `url(${image})` }}
         whileHover={{ scale: 1.05 }}
       />
@@ -52,20 +53,22 @@ const SplitSection = ({ path, image, title, position }) => {
 
 const Home = () => {
   return (
-    <div className="grid md:grid-cols-split h-[100dvh]">
-      <SplitSection
-        path="/canvas-art"
-        image="/images/hero/canvas-split.jpg"
-        title="Festmények"
-        position="left"
-      />
-      <SplitSection
-        path="/interior-design"
-        image="/images/hero/interior-split.jpg"
-        title="Lakberendezés"
-        position="right"
-      />
-    </div>
+    <PageTransition>
+      <div className="grid md:grid-cols-split h-[100dvh]">
+        <SplitSection
+          path="/canvas-art"
+          image="/images/hero/canvas-split.jpg"
+          title="Festmények"
+          position="left"
+        />
+        <SplitSection
+          path="/interior-design"
+          image="/images/hero/interior-split.jpg"
+          title="Lakberendezés"
+          position="right"
+        />
+      </div>
+    </PageTransition>
   );
 };
 

@@ -8,7 +8,7 @@ const ProjectCard = memo(({ title, image, category, description, dimensions, ind
       animate={{ opacity: 1, y: 0 }}
       transition={{ 
         duration: 0.6,
-        delay: index * 0.1,
+        delay: Math.min(index * 0.1, 0.5),
         ease: [0.215, 0.61, 0.355, 1]
       }}
       className="group relative overflow-hidden"
@@ -20,7 +20,9 @@ const ProjectCard = memo(({ title, image, category, description, dimensions, ind
           sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
           alt={title}
           loading="lazy"
-          className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+          decoding="async"
+          fetchPriority={index < 6 ? "high" : "auto"}
+          className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105 will-change-transform"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/0 to-black/60" />
       </div>
