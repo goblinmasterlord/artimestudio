@@ -14,8 +14,8 @@ const SectionTitle = ({ title, description }) => (
       <div className="w-12 h-px bg-black/20" />
     </div>
     
-    <h2 className="font-display text-5xl mb-6">{title}</h2>
-    <p className="text-lg opacity-70 max-w-2xl mx-auto">
+    <h2 className="font-display text-4xl mb-6">{title}</h2>
+    <p className="text-base opacity-70 max-w-2xl mx-auto">
       {description}
     </p>
   </motion.div>

@@ -376,38 +376,38 @@ const Contact = () => {
                             <button
                               type="button"
                               onClick={() => handleProjectTypeChange('interior')}
-                              className={`p-4 border transition-all ${
+                              className={`p-5 border transition-all ${
                                 formState.project === 'interior' 
                                   ? 'border-white bg-white/10' 
                                   : 'border-white/10 bg-transparent hover:bg-white/5'
                               }`}
                             >
                               <div className="flex flex-col items-center">
-                                <MapPin className={`w-6 h-6 mb-2 ${
+                                <MapPin className={`w-6 h-6 mb-3 ${
                                   formState.project === 'interior' ? 'text-white' : 'text-gray-400'
                                 }`} />
-                                <span className={
+                                <span className={`text-sm ${
                                   formState.project === 'interior' ? 'text-white' : 'text-gray-400'
-                                }>Lakberendezés</span>
+                                }`}>Lakberendezés</span>
                               </div>
                             </button>
                             
                             <button
                               type="button"
                               onClick={() => handleProjectTypeChange('canvas')}
-                              className={`p-4 border transition-all ${
+                              className={`p-5 border transition-all ${
                                 formState.project === 'canvas' 
                                   ? 'border-white bg-white/10' 
                                   : 'border-white/10 bg-transparent hover:bg-white/5'
                               }`}
                             >
                               <div className="flex flex-col items-center">
-                                <Mail className={`w-6 h-6 mb-2 ${
+                                <Mail className={`w-6 h-6 mb-3 ${
                                   formState.project === 'canvas' ? 'text-white' : 'text-gray-400'
                                 }`} />
-                                <span className={
+                                <span className={`text-sm ${
                                   formState.project === 'canvas' ? 'text-white' : 'text-gray-400'
-                                }>Festmény</span>
+                                }`}>Festmény</span>
                               </div>
                             </button>
                           </div>
@@ -459,7 +459,7 @@ const Contact = () => {
 
                         <motion.button
                           type="submit"
-                          className="group relative inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-3 overflow-hidden w-full justify-center font-medium"
+                          className="group relative inline-flex items-center gap-2 bg-white text-gray-900 px-9 py-4 overflow-hidden w-full justify-center font-medium text-sm"
                           whileHover={{ scale: 1.01 }}
                           whileTap={{ scale: 0.98 }}
                         >

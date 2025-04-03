@@ -27,7 +27,7 @@ const ProjectCard = memo(({ title, image, category, description, dimensions, ind
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/0 to-black/60" />
       </div>
       
-      <div className="absolute inset-x-0 bottom-0 p-6 translate-y-4 transition-transform duration-500 group-hover:translate-y-0">
+      <div className="absolute inset-x-0 bottom-0 p-7 translate-y-4 transition-transform duration-500 group-hover:translate-y-0">
         <div className="space-y-3 transform">
           <div className="flex items-center gap-3">
             <div className="h-px flex-1 bg-white/30" />

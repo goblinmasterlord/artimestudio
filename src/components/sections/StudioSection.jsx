@@ -30,8 +30,8 @@ const StudioSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="font-display text-5xl mb-6">Műterem</h2>
-          <p className="text-lg opacity-70 max-w-2xl mx-auto">
+          <h2 className="font-display text-4xl mb-6">Műterem</h2>
+          <p className="text-base opacity-70 max-w-2xl mx-auto">
             Fedezd fel műtermünket, ahol az alkotás varázsa születik. Egy hely, ahol a kreativitás és inspiráció találkozik.
           </p>
         </motion.div>
@@ -52,7 +52,7 @@ const StudioSection = () => {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
             <div className="absolute bottom-8 left-8 text-white">
-              <p className="text-lg font-display">{studioImages[0].caption}</p>
+              <p className="text-base font-display">{studioImages[0].caption}</p>
             </div>
           </motion.div>
 
@@ -74,7 +74,7 @@ const StudioSection = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
                 <div className="absolute bottom-6 left-6 text-white">
-                  <p className="text-sm font-display">{image.caption}</p>
+                  <p className="text-xs font-display">{image.caption}</p>
                 </div>
               </motion.div>
             ))}

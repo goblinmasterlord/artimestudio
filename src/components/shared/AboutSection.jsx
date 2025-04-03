@@ -6,8 +6,8 @@ import aboutImage from '/images/about/about-image.jpg';
 const AboutSection = () => {
   return (
     <section className="py-32 bg-black/[0.02]">
-      <Container>
-        <div className="grid lg:grid-cols-2 gap-24 items-center">
+      <Container className="px-8 lg:px-16">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Image Column */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -53,9 +53,9 @@ const AboutSection = () => {
             <div className="w-12 h-px bg-black mb-8" />
             
             <div className="max-w-lg">
-              <h2 className="font-display text-5xl mb-8">Az artimestudio-ról</h2>
+              <h2 className="font-display text-4xl mb-8">Az artimestudio-ról</h2>
               
-              <div className="space-y-6 text-lg opacity-70 leading-relaxed">
+              <div className="space-y-6 text-base opacity-70 leading-relaxed">
                 <p>
                   Az artimestudio egy olyan kreatív műhely, ahol a művészet és a design 
                   találkozik. Célunk, hogy egyedi és személyre szabott megoldásokat 

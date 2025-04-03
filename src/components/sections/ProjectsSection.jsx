@@ -6,12 +6,10 @@ import SectionTitle from '../ui/SectionTitle';
 import { X, ArrowRight, Maximize2, Clock, Grid, MapPin, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const ProjectCard = ({ project, index, onClick }) => {
-  const isLarge = index === 0 || index === 3;
-  
   return (
     <motion.div
       layout
-      className={`group cursor-pointer ${isLarge ? 'md:col-span-2' : ''}`}
+      className="group cursor-pointer"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0, once: true }}
       viewport={{ once: true, margin: "50px" }}
@@ -19,7 +17,7 @@ const ProjectCard = ({ project, index, onClick }) => {
       onClick={onClick}
     >
       <div className="relative overflow-hidden rounded-sm">
-        <div className={`relative ${isLarge ? 'aspect-[16/9]' : 'aspect-[3/4]'}`}>
+        <div className="relative aspect-[3/4]">
           <img 
             src={project.image} 
             alt={project.title}
@@ -31,9 +29,9 @@ const ProjectCard = ({ project, index, onClick }) => {
           
           {/* Content */}
           <div className="absolute inset-0 p-8 flex flex-col justify-end transform translate-y-6 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-            <p className="text-sm uppercase tracking-wider text-white/80 mb-2">{project.category}</p>
-            <h3 className="font-display text-2xl text-white mb-3">{project.title}</h3>
-            <p className="text-sm text-white/80 line-clamp-2">{project.description}</p>
+            <p className="text-xs uppercase tracking-wider text-white/80 mb-2">{project.category}</p>
+            <h3 className="font-display text-xl text-white mb-3">{project.title}</h3>
+            <p className="text-xs text-white/80 line-clamp-2">{project.description}</p>
           </div>
         </div>
       </div>
@@ -92,9 +90,9 @@ const ProjectModal = ({ project, onClose }) => {
             </button>
 
             <div>
-              <p className="text-sm uppercase tracking-wider opacity-70 mb-2">{project.category}</p>
-              <h3 className="font-display text-4xl mb-4">{project.title}</h3>
-              <p className="opacity-70 leading-relaxed text-lg">{project.description}</p>
+              <p className="text-xs uppercase tracking-wider opacity-70 mb-2">{project.category}</p>
+              <h3 className="font-display text-3xl mb-4">{project.title}</h3>
+              <p className="opacity-70 leading-relaxed text-base">{project.description}</p>
             </div>
 
             {/* Project Details */}
@@ -143,6 +141,9 @@ const ProjectModal = ({ project, onClose }) => {
 
 const ProjectsSection = ({ title, description, items }) => {
   const [selectedProject, setSelectedProject] = useState(null);
+  
+  // Limit the number of projects to 3
+  const limitedItems = items.slice(0, 3);
 
   return (
     <section className="py-20">
@@ -154,9 +155,9 @@ const ProjectsSection = ({ title, description, items }) => {
 
         <motion.div 
           layout 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-[1400px] mx-auto"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[1400px] mx-auto"
         >
-          {items.map((project, index) => (
+          {limitedItems.map((project, index) => (
             <ProjectCard
               key={project.title}
               project={project}

@@ -32,11 +32,11 @@ const PageHeader = ({
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <h1 className="font-display text-5xl md:text-7xl text-white mb-6">
+          <h1 className="font-display text-4xl md:text-6xl text-white mb-6">
             {title}
           </h1>
           {description && (
-            <p className="text-xl text-white/90 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg text-white/90 max-w-2xl mx-auto leading-relaxed">
               {description}
             </p>
           )}

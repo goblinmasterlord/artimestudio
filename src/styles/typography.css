@@ -1,0 +1,33 @@
+/* Typography Scale - Slightly smaller than default Tailwind sizes while maintaining good readability */
+
+.text-display-large {
+  @apply font-display text-5xl md:text-6xl;  /* Reduced from 7xl */
+}
+
+.text-display-medium {
+  @apply font-display text-4xl md:text-5xl;  /* Reduced from 6xl */
+}
+
+.text-display-small {
+  @apply font-display text-3xl md:text-4xl;  /* Reduced from 5xl */
+}
+
+.text-heading {
+  @apply font-display text-2xl md:text-3xl;  /* Reduced from 4xl */
+}
+
+.text-subheading {
+  @apply font-display text-xl md:text-2xl;  /* Reduced from 3xl */
+}
+
+.text-body-large {
+  @apply text-base md:text-lg;  /* Reduced from text-xl */
+}
+
+.text-body {
+  @apply text-sm md:text-base;  /* Reduced from text-lg */
+}
+
+.text-caption {
+  @apply text-xs md:text-sm;  /* Reduced from text-base */
+} 

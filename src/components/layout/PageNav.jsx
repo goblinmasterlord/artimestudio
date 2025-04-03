@@ -65,14 +65,12 @@ const PageNav = ({ items = [], logo = "artimestudio", secondaryCta = null }) => 
   return (
     <>
       <header 
-        className={`fixed w-full z-50 transition-all duration-300 ${
-          scrolled ? 'py-3 bg-white/90 backdrop-blur-sm shadow-sm' : 'py-4'
-        }`}
+        className={`fixed w-full z-50 transition-all duration-300 py-3 bg-white/90 backdrop-blur-sm shadow-sm`}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-8 flex justify-between items-center h-[50px]">
           <Link 
             to="/" 
-            className="font-display text-xl md:text-2xl tracking-wider hover:opacity-70 transition-opacity"
+            className="font-display text-lg md:text-xl tracking-wider hover:opacity-70 transition-opacity"
           >
             {logo}
           </Link>
@@ -85,7 +83,7 @@ const PageNav = ({ items = [], logo = "artimestudio", secondaryCta = null }) => 
                 onClick={() => handleNavigation(item)}
                 className="relative py-2"
               >
-                <span className={`transition-opacity ${
+                <span className={`text-sm transition-opacity ${
                   (item.id && activeSection === item.id) ? 'opacity-100' : 'opacity-50 hover:opacity-70'
                 }`}>
                   {item.label}
@@ -100,21 +98,21 @@ const PageNav = ({ items = [], logo = "artimestudio", secondaryCta = null }) => 
               </button>
             ))}
             
+            <Link 
+              to="/contact"
+              className="px-6 py-2 text-sm border border-black text-black hover:bg-black hover:text-white transition-colors"
+            >
+              Kapcsolat
+            </Link>
+            
             {secondaryCta && (
               <Link 
                 to={secondaryCta.path}
-                className="px-6 py-2 border border-black text-black hover:bg-black hover:text-white transition-colors"
+                className="ml-4 px-6 py-2 text-sm bg-black text-white hover:bg-black/90 transition-colors"
               >
                 {secondaryCta.label}
               </Link>
             )}
-            
-            <Link 
-              to="/contact"
-              className="ml-4 px-6 py-2 bg-black text-white hover:bg-black/90 transition-colors"
-            >
-              Kapcsolat
-            </Link>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -124,9 +122,9 @@ const PageNav = ({ items = [], logo = "artimestudio", secondaryCta = null }) => 
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? (
-              <X className="w-6 h-6" />
+              <X className="w-5 h-5" />
             ) : (
-              <Menu className="w-6 h-6" />
+              <Menu className="w-5 h-5" />
             )}
           </button>
         </div>
@@ -161,7 +159,7 @@ const PageNav = ({ items = [], logo = "artimestudio", secondaryCta = null }) => 
                       <button
                         key={item.id || item.path}
                         onClick={() => handleNavigation(item)}
-                        className={`block w-full text-left text-lg py-3 relative ${
+                        className={`block w-full text-left text-base py-3 relative ${
                           (item.id && activeSection === item.id)
                             ? 'text-gray-900' 
                             : 'text-gray-500 hover:text-gray-900'
@@ -179,21 +177,21 @@ const PageNav = ({ items = [], logo = "artimestudio", secondaryCta = null }) => 
                     ))}
                   </div>
 
+                  <Link 
+                    to="/contact"
+                    className="inline-block w-full py-3 text-sm border border-black text-black text-center hover:bg-black hover:text-white transition-colors"
+                  >
+                    Kapcsolatfelvétel
+                  </Link>
+
                   {secondaryCta && (
                     <Link 
                       to={secondaryCta.path}
-                      className="inline-block w-full py-3 mb-4 border border-black text-black text-center hover:bg-black hover:text-white transition-colors"
+                      className="inline-block w-full py-3 text-sm mt-4 bg-black text-white text-center hover:bg-black/90 transition-colors"
                     >
                       {secondaryCta.label}
                     </Link>
                   )}
-
-                  <Link 
-                    to="/contact"
-                    className="inline-block w-full py-3 bg-black text-white text-center hover:bg-black/90 transition-colors"
-                  >
-                    Kapcsolatfelvétel
-                  </Link>
                 </div>
               </div>
             </motion.nav>

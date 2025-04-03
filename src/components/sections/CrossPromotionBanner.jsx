@@ -1,53 +1,57 @@
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
-const CrossPromotionBanner = ({ 
-  title, 
-  description, 
-  image, 
-  linkTo, 
-  linkText 
-}) => {
+const CrossPromotionBanner = () => {
+  const location = useLocation();
+  
+  // Determine content based on current page
+  const isCanvasArtPage = location.pathname.includes('canvas-art');
+  
+  const content = isCanvasArtPage
+    ? {
+        heading: "Szép otthon tervezés",
+        description: "Megálmodom és megtervezem otthona belső tereit, hogy a funkcionalitás és az esztétikum tökéletes harmóniában legyen.",
+        linkTo: "/interior-design",
+        linkText: "Lakberendezés",
+        bgImage: "/images/banners/interior-promo.jpg"
+      }
+    : {
+        heading: "Egyedi festmények",
+        description: "Festményeimmel egyedi hangulatot teremthet otthonában. Fedezze fel alkotásaimat vagy rendeljen személyre szabott művet.",
+        linkTo: "/canvas-art",
+        linkText: "Festmények",
+        bgImage: "/images/banners/canvas-promo.jpg"
+      };
+
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative py-24 md:py-32 overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-black/40 mix-blend-multiply" />
-        <img
-          src={image}
-          alt=""
+        <div className="absolute inset-0 bg-black/40 z-10" />
+        <img 
+          src={content.bgImage} 
+          alt="" 
           className="w-full h-full object-cover"
         />
       </div>
-
-      {/* Content */}
-      <div className="relative max-w-7xl mx-auto px-4 py-32">
-        <div className="max-w-2xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+      
+      <div className="relative z-20 max-w-7xl mx-auto px-6 md:px-8">
+        <div className="max-w-xl">
+          <h2 className="font-display text-3xl md:text-4xl text-white mb-6">
+            {content.heading}
+          </h2>
+          <p className="text-base text-white/90 mb-8">
+            {content.description}
+          </p>
+          <Link 
+            to={content.linkTo}
+            className="inline-flex items-center px-7 py-3.5 text-sm bg-white text-black hover:bg-white/90 transition-colors group"
           >
-            <h2 className="font-display text-4xl md:text-5xl text-white mb-6">
-              {title}
-            </h2>
-            <p className="text-lg text-white/90 mb-8 leading-relaxed">
-              {description}
-            </p>
-
-            <Link to={linkTo}>
-              <motion.div
-                className="inline-flex items-center gap-2 bg-white text-black px-8 py-4 text-sm font-medium hover:gap-4 transition-all group"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <span>{linkText}</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </motion.div>
-            </Link>
-          </motion.div>
+            {content.linkText}
+            <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+          </Link>
         </div>
       </div>
 

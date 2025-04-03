@@ -31,7 +31,7 @@ const CanvasArt = () => {
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      setFeaturedProjects(featuredProjectsData);
+      setFeaturedProjects(featuredProjectsData.slice(0, 3));
       setPortfolioItems(portfolioItemsData);
       setIsLoading(false);
     }, 500);
@@ -87,8 +87,8 @@ const CanvasArt = () => {
                 <Container>
                   <FadeIn>
                     <div className="text-center mb-16">
-                      <h2 className="font-display text-4xl mb-4">Alkotásaim</h2>
-                      <p className="text-lg opacity-70 max-w-2xl mx-auto">
+                      <h2 className="font-display text-3xl mb-4">Alkotásaim</h2>
+                      <p className="text-base opacity-70 max-w-2xl mx-auto">
                         Minden olajfestményem egyedi történetet mesél el és kifejetten illeszkedik Hozzád és otthonodhoz. Itt van néhány korábbi alkotásom.
                       </p>
                     </div>

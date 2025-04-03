@@ -77,6 +77,9 @@ const InteriorDesign = () => {
     }
   ];
 
+  // Use only the first 3 projects
+  const limitedProjects = featuredProjects.slice(0, 3);
+
   const handleScrollDown = () => {
     const aboutSection = document.getElementById('about');
     if (aboutSection) {
@@ -115,7 +118,7 @@ const InteriorDesign = () => {
             <ProjectsSection
               title="Portfólió"
               description="Fedezd fel néhány közelmúltbeli projektemet, amelyek tökéletesen példázzák tervezési filozófiámat és megközelítését."
-              items={featuredProjects}
+              items={limitedProjects}
             />
           </div>
 

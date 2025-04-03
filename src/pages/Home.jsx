@@ -29,7 +29,7 @@ const SplitSection = ({ path, image, title, position }) => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.6 }}
         >
-          <h2 className="text-white font-display text-4xl md:text-5xl lg:text-6xl tracking-wider mb-4">
+          <h2 className="text-white font-display text-3xl md:text-4xl lg:text-5xl tracking-wider mb-4">
             {title}
           </h2>
           <motion.div
@@ -43,7 +43,7 @@ const SplitSection = ({ path, image, title, position }) => {
 
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
         <div className="flex items-center gap-2">
-          <span className="text-sm uppercase tracking-wider">Felfedezés</span>
+          <span className="text-xs uppercase tracking-wider">Felfedezés</span>
           <ArrowRight className="w-4 h-4" />
         </div>
       </div>

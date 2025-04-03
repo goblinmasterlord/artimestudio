@@ -17,8 +17,8 @@ const SectionTitle = ({ title, description }) => (
       <div className="w-12 h-px bg-black/20" />
     </div>
     
-    <h2 className="font-display text-5xl mb-6">{title}</h2>
-    <p className="text-lg opacity-70 max-w-2xl mx-auto">
+    <h2 className="font-display text-4xl mb-6">{title}</h2>
+    <p className="text-base opacity-70 max-w-2xl mx-auto">
       {description}
     </p>
   </motion.div>
@@ -41,17 +41,14 @@ const ServiceCard = ({ icon: Icon, title, description, features, index }) => {
       whileHover={{ y: -8 }}
       onClick={handleContactClick}
     >
-      {/* Background Pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(0,0,0,0.02)_25%,rgba(0,0,0,0.02)_50%,transparent_50%,transparent_75%,rgba(0,0,0,0.02)_75%)] bg-[length:8px_8px] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
       {/* Icon */}
       <div className="relative mb-8">
         <motion.div 
-          className="relative w-16 h-16 bg-black/5 flex items-center justify-center"
+          className="relative w-12 h-12 bg-black/5 flex items-center justify-center"
           whileHover={{ rotate: 90 }}
           transition={{ type: "spring", stiffness: 200, damping: 10 }}
         >
-          <Icon className="w-8 h-8" />
+          <Icon className="w-6 h-6" />
           <motion.div 
             className="absolute inset-0 bg-black/5"
             initial={{ scale: 0.8 }}
@@ -64,13 +61,13 @@ const ServiceCard = ({ icon: Icon, title, description, features, index }) => {
       {/* Content */}
       <div className="relative">
         <motion.h3 
-          className="font-display text-2xl mb-4 transition-all duration-300 group-hover:translate-x-2"
+          className="font-display text-xl mb-4 transition-all duration-300 group-hover:translate-x-2"
           initial={{ opacity: 0.7 }}
           whileHover={{ opacity: 1 }}
         >
           {title}
         </motion.h3>
-        <p className="text-lg opacity-70 mb-8 leading-relaxed transition-all duration-300 group-hover:opacity-90 group-hover:translate-x-2">
+        <p className="text-base opacity-70 mb-8 leading-relaxed transition-all duration-300 group-hover:opacity-90 group-hover:translate-x-2">
           {description}
         </p>
 
@@ -79,7 +76,7 @@ const ServiceCard = ({ icon: Icon, title, description, features, index }) => {
           {features.map((feature, i) => (
             <motion.li 
               key={i}
-              className="flex items-center gap-4 text-sm transition-all duration-300"
+              className="flex items-center gap-4 text-xs transition-all duration-300"
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.1 * i }}
@@ -112,13 +109,6 @@ const ServiceCard = ({ icon: Icon, title, description, features, index }) => {
         initial={{ scaleY: 0 }}
         whileHover={{ scaleY: 1 }}
         transition={{ duration: 0.3, delay: 0.1 }}
-      />
-      
-      {/* Subtle overlay on hover */}
-      <motion.div 
-        className="absolute inset-0 bg-black/0 pointer-events-none transition-colors duration-300 group-hover:bg-black/[0.01]"
-        initial={{ opacity: 0 }}
-        whileHover={{ opacity: 1 }}
       />
     </motion.div>
   );
