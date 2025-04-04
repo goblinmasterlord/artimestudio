@@ -4,7 +4,6 @@ import MasonryGrid from '../components/portfolio/MasonryGrid';
 import Container from '../components/ui/Container';
 import ProjectsSection from '../components/sections/ProjectsSection';
 import FadeIn from '../components/animations/FadeIn';
-import AboutSection from '../components/shared/AboutSection';
 import CrossPromotionBanner from '../components/sections/CrossPromotionBanner';
 import PageNav from '../components/layout/PageNav';
 import PageHeader from '../components/sections/PageHeader';
@@ -19,7 +18,6 @@ const CanvasArt = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const navigationItems = [
-    { id: 'about', label: 'Stúdió' },
     { id: 'featured', label: 'Projektek' },
     { id: 'portfolio', label: 'Alkotások' }
   ];
@@ -40,10 +38,10 @@ const CanvasArt = () => {
   }, []);
 
   const handleScrollDown = () => {
-    const aboutSection = document.getElementById('about');
-    if (aboutSection) {
+    const featuredSection = document.getElementById('featured');
+    if (featuredSection) {
       const offset = 80;
-      const elementPosition = aboutSection.getBoundingClientRect().top;
+      const elementPosition = featuredSection.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
 
       window.scrollTo({
@@ -65,10 +63,6 @@ const CanvasArt = () => {
             onScrollDown={handleScrollDown}
           />
           
-          <div id="about">
-            <AboutSection />
-          </div>
-
           {isLoading ? (
             <div className="text-center py-20">
               <p>Loading...</p>

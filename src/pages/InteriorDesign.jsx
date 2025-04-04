@@ -5,12 +5,10 @@ import InteriorServicesSection from '../components/sections/InteriorServicesSect
 import CrossPromotionBanner from '../components/sections/CrossPromotionBanner';
 import PageNav from '../components/layout/PageNav';
 import PageHeader from '../components/sections/PageHeader';
-import AboutSection from '../components/shared/AboutSection';
 import PageTransition from '../components/animations/PageTransition';
 
 const InteriorDesign = () => {
   const navigationItems = [
-    { id: 'about', label: 'Stúdió' },
     { id: 'services', label: 'Szolgáltatások' },
     { id: 'projects', label: 'Portfólió' }
   ];
@@ -81,10 +79,10 @@ const InteriorDesign = () => {
   const limitedProjects = featuredProjects.slice(0, 3);
 
   const handleScrollDown = () => {
-    const aboutSection = document.getElementById('about');
-    if (aboutSection) {
+    const servicesSection = document.getElementById('services');
+    if (servicesSection) {
       const offset = 80;
-      const elementPosition = aboutSection.getBoundingClientRect().top;
+      const elementPosition = servicesSection.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
 
       window.scrollTo({
@@ -106,10 +104,6 @@ const InteriorDesign = () => {
             onScrollDown={handleScrollDown}
           />
           
-          <div id="about">
-            <AboutSection />
-          </div>
-
           <div id="services">
             <InteriorServicesSection />
           </div>

@@ -18,10 +18,13 @@ const PageHeader = ({
         transition={{ duration: 1.5, ease: 'easeOut' }}
       >
         <div className="absolute inset-0 bg-black/30 mix-blend-multiply z-10" />
-        <img
+        <motion.img
           src={image}
           alt={title}
           className="w-full h-full object-cover"
+          initial={{ filter: 'grayscale(100%)' }}
+          animate={{ filter: 'grayscale(0%)' }}
+          transition={{ duration: 1.8, ease: 'easeOut', delay: 0.2 }}
         />
       </motion.div>
 
