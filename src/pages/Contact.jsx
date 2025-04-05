@@ -115,37 +115,32 @@ const InputField = ({
 const ContactCard = ({ icon: Icon, title, children, href, delay = 0 }) => (
   <motion.a
     href={href}
-    className="group relative bg-white border border-gray-100 hover:border-gray-300 p-6 flex flex-col items-center gap-4 overflow-hidden transition-colors shadow-sm hover:shadow-md"
+    className="group relative bg-white border border-gray-200 hover:border-gray-900 p-8 flex items-start gap-5 overflow-hidden transition-all"
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ delay }}
-    whileHover={{ y: -8 }}
+    whileHover={{ y: -5 }}
     whileTap={{ scale: 0.98 }}
   >
-    <div className="w-14 h-14 bg-gray-50 rounded-full flex items-center justify-center group-hover:bg-gray-100 transition-colors">
-      <Icon className="w-6 h-6 text-gray-700 group-hover:text-black transition-colors" />
+    <div className="relative">
+      <div className="w-10 h-10 bg-gray-50 flex items-center justify-center group-hover:bg-gray-100 transition-colors">
+        <Icon className="w-5 h-5 text-gray-800" />
+      </div>
     </div>
 
-    <div className="text-center">
+    <div>
       <h3 className="font-medium text-lg text-gray-900 mb-1">{title}</h3>
       <div className="text-sm text-gray-600">{children}</div>
     </div>
     
+    <ArrowRight className="absolute right-8 top-1/2 -translate-y-1/2 w-4 h-4 opacity-0 transform translate-x-4 transition-all group-hover:opacity-100 group-hover:translate-x-0 text-black" />
+    
     <motion.div 
-      className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-gray-200 via-gray-900 to-gray-200"
-      initial={{ scaleX: 0, opacity: 0 }}
-      whileHover={{ scaleX: 1, opacity: 1 }}
+      className="absolute bottom-0 left-0 h-[2px] w-full bg-black origin-left"
+      initial={{ scaleX: 0 }}
+      whileHover={{ scaleX: 1 }}
       transition={{ duration: 0.3 }}
     />
-    
-    <motion.div
-      className="absolute right-4 bottom-4 opacity-0 group-hover:opacity-100 transition-opacity"
-      initial={{ x: 10 }}
-      whileHover={{ x: 0 }}
-      transition={{ duration: 0.2 }}
-    >
-      <ArrowRight className="w-4 h-4" />
-    </motion.div>
   </motion.a>
 );
 
@@ -357,12 +352,12 @@ const Contact = () => {
                 
                 {formStatus.submitted ? (
                   <motion.div 
-                    className="border border-gray-200 p-8 text-center bg-green-50 rounded-lg shadow-sm"
+                    className="border border-gray-200 p-8 text-center bg-green-50"
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                   >
-                    <div className="w-16 h-16 bg-green-100 flex items-center justify-center mx-auto mb-4 rounded-full">
-                      <svg className="w-8 h-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <div className="w-12 h-12 bg-green-100 flex items-center justify-center mx-auto mb-4">
+                      <svg className="w-6 h-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
@@ -371,11 +366,11 @@ const Contact = () => {
                   </motion.div>
                 ) : (
                   <motion.div 
-                    className="bg-white p-8 rounded-lg shadow-sm border border-gray-100"
+                    className="bg-white p-8 border border-gray-200"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 }}
-                    whileHover={{ boxShadow: "0 8px 30px rgba(0,0,0,0.05)" }}
+                    whileHover={{ borderColor: "#000" }}
                   >
                     <form onSubmit={handleSubmit} className="space-y-10">
                       {/* Project Type Selection */}
@@ -394,9 +389,17 @@ const Contact = () => {
                             whileTap={{ scale: 0.98 }}
                           >
                             <div className="flex flex-col items-center">
-                              <Mail className={`w-6 h-6 mb-3 ${
-                                formState.project === 'interior' ? 'text-gray-900' : 'text-gray-400'
-                              }`} />
+                              <svg 
+                                className={`w-6 h-6 mb-3 ${
+                                  formState.project === 'interior' ? 'text-gray-900' : 'text-gray-400'
+                                }`} 
+                                viewBox="0 0 24 24" 
+                                fill="none" 
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path d="M3 9.5L12 4L21 9.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                <path d="M19 13V19.4C19 19.7314 18.7314 20 18.4 20H5.6C5.26863 20 5 19.7314 5 19.4V13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                              </svg>
                               <span className={`text-sm ${
                                 formState.project === 'interior' ? 'text-gray-900' : 'text-gray-500'
                               }`}>Lakberendezés</span>
@@ -415,9 +418,20 @@ const Contact = () => {
                             whileTap={{ scale: 0.98 }}
                           >
                             <div className="flex flex-col items-center">
-                              <Mail className={`w-6 h-6 mb-3 ${
-                                formState.project === 'canvas' ? 'text-gray-900' : 'text-gray-400'
-                              }`} />
+                              <svg 
+                                className={`w-6 h-6 mb-3 ${
+                                  formState.project === 'canvas' ? 'text-gray-900' : 'text-gray-400'
+                                }`} 
+                                viewBox="0 0 24 24" 
+                                fill="none" 
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <rect x="3" y="3" width="18" height="18" rx="1" stroke="currentColor" strokeWidth="1.5" />
+                                <path d="M3 7H21" stroke="currentColor" strokeWidth="1.5" />
+                                <path d="M7 3V7" stroke="currentColor" strokeWidth="1.5" />
+                                <path d="M17 3V7" stroke="currentColor" strokeWidth="1.5" />
+                                <path d="M7 12L10 15L17 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                              </svg>
                               <span className={`text-sm ${
                                 formState.project === 'canvas' ? 'text-gray-900' : 'text-gray-500'
                               }`}>Festmény</span>
@@ -475,17 +489,17 @@ const Contact = () => {
 
                       <motion.button
                         type="submit"
-                        className="group relative inline-flex items-center gap-2 bg-gray-900 text-white px-10 py-4 overflow-hidden w-full justify-center font-medium text-sm rounded-lg"
-                        whileHover={{ scale: 1.01, backgroundColor: "#1a1a1a" }}
+                        className="group relative inline-flex items-center gap-2 bg-gray-900 text-white px-10 py-4 overflow-hidden w-full justify-center font-medium text-sm"
+                        whileHover={{ backgroundColor: "#000" }}
                         whileTap={{ scale: 0.98 }}
                       >
                         <span className="relative z-10">Üzenet küldése</span>
                         <Send className="w-4 h-4 relative z-10 transition-transform group-hover:translate-x-1" />
                         
                         <motion.div 
-                          className="absolute inset-0 bg-gradient-to-r from-gray-800 to-gray-900"
-                          initial={{ x: "-100%", opacity: 0 }}
-                          whileHover={{ x: 0, opacity: 1 }}
+                          className="absolute inset-0 bg-black"
+                          initial={{ scaleX: 0, opacity: 0.3 }}
+                          whileHover={{ scaleX: 1, opacity: 1 }}
                           transition={{ duration: 0.3 }}
                         />
                       </motion.button>
@@ -531,7 +545,7 @@ const Contact = () => {
               
               <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
                 <ContactCard 
-                  icon={User} 
+                  icon={Mail} 
                   title="E-mail"
                   href="mailto:hello@artimestudio.com"
                   delay={0.3}
