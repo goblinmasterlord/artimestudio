@@ -4,6 +4,7 @@ import MasonryGrid from '../components/portfolio/MasonryGrid';
 import Container from '../components/ui/Container';
 import ProjectsSection from '../components/sections/ProjectsSection';
 import FadeIn from '../components/animations/FadeIn';
+import AboutSection from '../components/shared/AboutSection';
 import CrossPromotionBanner from '../components/sections/CrossPromotionBanner';
 import PageNav from '../components/layout/PageNav';
 import PageHeader from '../components/sections/PageHeader';
@@ -18,6 +19,7 @@ const CanvasArt = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const navigationItems = [
+    { id: 'about', label: 'Stúdió' },
     { id: 'featured', label: 'Projektek' },
     { id: 'portfolio', label: 'Alkotások' }
   ];
@@ -38,10 +40,10 @@ const CanvasArt = () => {
   }, []);
 
   const handleScrollDown = () => {
-    const featuredSection = document.getElementById('featured');
-    if (featuredSection) {
+    const aboutSection = document.getElementById('about');
+    if (aboutSection) {
       const offset = 80;
-      const elementPosition = featuredSection.getBoundingClientRect().top;
+      const elementPosition = aboutSection.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
 
       window.scrollTo({
@@ -62,6 +64,10 @@ const CanvasArt = () => {
             image="/images/hero/canvas-hero.jpg"
             onScrollDown={handleScrollDown}
           />
+          
+          <div id="about">
+            <AboutSection />
+          </div>
           
           {isLoading ? (
             <div className="text-center py-20">
