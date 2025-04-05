@@ -22,8 +22,16 @@ const PageTransition = ({ children }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
     
-    // Add a unique identifier to the current main element
+    // Disable pointer events during transitions to prevent interruptions
     if (pageRef.current) {
+      pageRef.current.style.pointerEvents = 'none';
+      setTimeout(() => {
+        if (pageRef.current) {
+          pageRef.current.style.pointerEvents = 'auto';
+        }
+      }, 600); // Slightly longer than animation duration to ensure completion
+      
+      // Add a unique identifier to the current main element
       const mainElement = pageRef.current.querySelector('main');
       if (mainElement) {
         mainElement.dataset.active = 'true';
@@ -40,17 +48,39 @@ const PageTransition = ({ children }) => {
           console.log('Cleaning up inactive main element');
           el.remove();
         });
-      }, 300); // Match this with the exit animation duration
+      }, 500); // Increased to ensure exit animations complete
     };
   }, []);
+
+  // Page transition variants
+  const pageVariants = {
+    initial: { 
+      opacity: 0,
+    },
+    animate: { 
+      opacity: 1,
+      transition: {
+        duration: 0.4,
+        ease: "easeInOut",
+        when: "beforeChildren"
+      }
+    },
+    exit: { 
+      opacity: 0,
+      transition: {
+        duration: 0.3,
+        ease: "easeInOut"
+      }
+    }
+  };
 
   return (
     <motion.div
       ref={pageRef}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.3, ease: "easeInOut" }}
+      variants={pageVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
       className="page-transition-wrapper"
       onAnimationComplete={(definition) => {
         // After animation completes, check again for duplicates

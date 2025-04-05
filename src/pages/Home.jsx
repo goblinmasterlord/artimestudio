@@ -7,15 +7,48 @@ import PageTransition from '../components/animations/PageTransition';
 const CategoryButton = ({ path, title, delay = 0 }) => {
   const navigate = useNavigate();
 
+  // Prevent interruption of animation when button is hovered/touched during initial animation
+  const buttonVariants = {
+    initial: { opacity: 0, y: 20 },
+    animate: { 
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        duration: 0.6, 
+        delay,
+        ease: "easeOut" 
+      }
+    },
+    hover: { 
+      y: -5, 
+      backgroundColor: 'rgba(255, 255, 255, 0.2)',
+      transition: { 
+        duration: 0.3, 
+        ease: "easeOut",
+        y: {
+          type: "spring",
+          stiffness: 300,
+          damping: 20
+        }
+      }
+    },
+    tap: { 
+      scale: 0.98,
+      transition: { 
+        duration: 0.1 
+      }
+    }
+  };
+
   return (
     <motion.button
       onClick={() => navigate(path)}
       className="group relative overflow-hidden bg-white/10 backdrop-blur-sm border border-white/20 py-5 px-8 w-full max-w-sm mx-auto"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay }}
-      whileHover={{ y: -5, backgroundColor: 'rgba(255, 255, 255, 0.2)' }}
-      whileTap={{ scale: 0.98 }}
+      variants={buttonVariants}
+      initial="initial"
+      animate="animate"
+      whileHover="hover"
+      whileTap="tap"
     >
       <motion.div 
         className="absolute inset-0 bg-white/5"
@@ -78,7 +111,26 @@ const Home = () => {
       opacity: 1,
       transition: { 
         staggerChildren: 0.2,
-        delayChildren: 0.3
+        delayChildren: 0.3,
+        when: "beforeChildren"
+      }
+    },
+    exit: {
+      opacity: 0,
+      transition: {
+        duration: 0.3
+      }
+    }
+  };
+
+  const buttonContainerVariants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { 
+        staggerChildren: 0.2,
+        delayChildren: 0.8,
+        when: "beforeChildren"
       }
     }
   };
@@ -145,19 +197,19 @@ const Home = () => {
           
           <motion.div
             className="flex flex-col md:flex-row gap-6 justify-center mt-6"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
+            variants={buttonContainerVariants}
+            initial="hidden"
+            animate="visible"
           >
             <CategoryButton 
               path="/canvas-art"
               title="Festmények"
-              delay={0.8}
+              delay={0}
             />
             <CategoryButton 
               path="/interior-design"
               title="Lakberendezés"
-              delay={1}
+              delay={0.2}
             />
           </motion.div>
         </motion.div>
